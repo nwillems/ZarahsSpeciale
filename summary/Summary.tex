@@ -1,102 +1,100 @@
 \section{Executive Summary}
 The aim of the thesis is to empirically investigate the price effect on 
 apartments in Copenhagen after opening of the first $22$ metro stations, and 
-specifically, how the effect is depending on the distance to the nearest 
+specifically, how the effect is dependent on the distance to the nearest 
 metro station. The analysis is done by setting up two econometric models:  A 
 hedonic price effect model based on Rosen's theory from $1974$ which fits a 
-function of house prices, in the analysis is used the natural logarithm to a 
+function of house prices, the analysis uses the natural logarithm to a 
 set of co-variates,  and an additive model using cubic smoothing splines to 
 include a non-linear effect and give more flexibility to the model, to better 
 capture the spatial dependence. The additional model is inspired by Hastie and 
 Tibshirani( $1990$). 
 
 The two models are estimated using a dataset covering all sales for 
-apartments sold more than one time doing the period $2000$ to April $2013$. The 
-dataset is separated in to periods, the time before and after the metro 
-station closes to the apartment was opened. Since $2005$ it has been decided 
+apartments sold more than one time doing the period MÅNED $2000$ to April $2013$. The 
+dataset is separated in two periods, the time before and after the metro 
+station closest to the apartment was opened. Since $2005$ it has been decided 
 that the metro system should be expanded with an extra line, and from $2011$ 
-the contractions site was established. The dataset could consist apartment 
-sales there is positive affect by a announcement effect or negative affected 
-be the noise from a construction site, but the analysis does not take account 
-for the new expanding of the metro system, it only looks at  the finish $22$ 
-stations, and how there have affected the apartment sales in Copenhagen, 
-exclusive Frederiksberg. 
+the contstruction sites were established. The dataset could consist of apartment 
+sales that are positively affected by an announcement effect or negatively affected 
+be the noise from a construction site, the analysis does not take into account 
+the expansion of the metro system, it only looks at  the finished $22$ 
+stations, and how they have affected the apartment sales in Copenhagen, 
+exclusive Frederiksberg. % Frederiksberg inklusiv?
 
 The analysis includes three groups of variables: characteristics variable, 
-spatial variable and neighborhood variables. The characteristics variable 
-include variable describing the apartment. It is variable like size in square 
-meters , number of room, age of the building, units in the building and 
+spatial variable and neighborhood variables. The characteristics variables 
+include variables describing the apartment. It is variables like size in square 
+meters, number of rooms, age of the building, units in the building and 
 floor. The spatial variables explain distance to the metro station, park and 
 daycare. The neighborhood variables include average income in the apartments 
 and school ranking, based on the average of grade-average for graduates. 
 
 The additive model uses a technique to fit non-linear relationships to 
-multivariate data. The additive model includes to concepts "`spline functions"
+multivariate data. The additive model includes two concepts "`spline functions"
 ' and "`smoothers"'.  A spline function is used in the construction of a 
-spline curve, where the spline curve is used to create at smoothing curve.  
-The spline curve is a curve reacted by piece wise polynomial, where two or 
-more polynomial a combined to create a curve. The smoother is a technic to 
-summarize the trend for a response variable Y ad a function of one or more 
-explanatory variables. The practical by a smoothing is that is does not use 
-any fix form on the explanatory variables.  An example of a smoother is the 
-"`Moving average- technique"'. The smoother is simple building upon the idea 
-that the dataset is split into pieces and on each pieces of the dataset is 
-fit an average,  simple regression or polynomials, differ from the technic 
-there is used.  
+spline curve, where the spline curve is used to create a smoothing curve.  
+The spline curve is a curve reacted by a piece wise polynomial, where two or 
+more polynomials are combined to create a curve. The smoother is a technique to
+summarize the trend for a response variable $Y$ and a function of one or more 
+explanatory variables. The practical by a smoothing is that it does not use 
+any fixed form on the explanatory variables.  An example of a smoother is the 
+"`Moving average"'-technique. The smoother is simply building upon the idea 
+that the dataset is split into pieces and on each piece of the dataset is 
+fited an average, simple regression or polynomials, differ from the technique
+there is used.
 
-And important issue in the analysis is the trade-off between variance and 
-bias, which play a important role when the dataset is split into smaller 
-intervals. A large interval produce a curve with high degree of smoothing, an 
+An important issue in the analysis is the trade-off between variance and 
+bias, which plays an important role when the dataset is split into smaller 
+intervals. A large interval produces a curve with high degree of smoothing, and 
 estimates with low variance and high bias, because of high degree of 
 smoothing and therefore greater distance between actual curve and smoothing 
-curve.  The opposite will happen with a small interval, where the variance is 
-high and the bias small.  In the additive model, is used a function called 
-cubic smoothing spline, and to balance the trade-off between variance and 
-bias, is included a parameter there can account for that. 
+curve.  The opposite will happen with small intervals, where the variance is 
+high and the bias small.  In the additive model, are used a function called 
+cubic smoothing spline, to balance the trade-off between variance and 
+bias, is included a parameter that accounts for that. 
 
-The motivation for investigate what effect depending on meters to the 
+% NO CLUE WHAT BELOW MEANS!
+The motivation for investigating what effect depending on meters to the 
 stations there is related to the metro station is grounded in different 
-relation explaining in the literature. Doing the positive and negative 
+relation explained in the literature. Doing the positive and negative 
 externalities related to living close to a metro stations, studies of 
 relation between house prices and living close to public transport have 
 revealed different relations. 
 
-So fare Agostini and Palmucci($2008$) prove a linear relation while Chen et al (
- $1997$) proof that it is possible to observe a lower price for house just next 
+So far Agostini and Palmucci($2008$) prove a linear relation while Chen et al (
+ $1997$) prove that it is possible to observe a lower price for house just next 
 to the station, and after would a raise in the price, and as the houses move 
 further away from the station, there will be observed a downward trend. 
 
-The hedonic models estimates show a linear relation between house prices and 
-meter to a metro station. Apartments sales between $0$ and $200$ meters to a 
-station, have experience a high increase in the house prices after the 
-station was open. It is in that relation important to notice that some of the 
+The hedonic model estimates show a linear relation between house prices and 
+meter to a metro station. Apartment sales between $0$ and $200$ meters to a 
+station, have experienced a high increase in the house prices after the 
+station was opened. It is in that relation important to notice that some of the 
 effect, can simply be because this apartments also was the one suffering the 
-most from the noise and dust from the construction site, and there for have 
-the prices on this apartment, been pushed done even more under the building 
-process, and there for will some of the raise in prices be related to the 
+most from the noise and dust from the construction site, and therefore have
+the prices on this apartment, been pushed down even more under the building 
+process, and therefore will some of the raise in prices be related to the 
 removing of the construction site, and not because the apartment, now is 
-closer to a metro station.   
+closer to a metro station.
 
 The additive model, which gives additional flexibility permits more accurate 
-estimation of the underlying spatial structure of the date. This should leed 
-to more reliable results for the impact of having a apartments close to a 
-metro station.  
-The estimates for the additive model, shows that the negativ eksternalites by 
-living close to a metro station matters. The model proof a upgoing trend from $0$
-to 300 meters from a metro station, while after $300$ meters to the station, 
-the effect on house prices is falling af the apartment it place further away 
+estimation of the underlying spatial structure of the data. This should lead 
+to more reliable results for the impact of having an apartment close to a 
+metro station.
+The estimates for the additive model, shows that the negative externalities by 
+living close to a metro station matters. The model proves an upgoing trend from $0$
+to $300$ meters from a metro station, while after $300$ meters to the station, 
+the effect on house prices is falling if the apartment it placed further away 
 from the metro station.   
 
-The thesis is structured as follow: The first chapter gives a short introducing 
-to the Copenhagen metro system, the second chapter explain the theory behind the
-hedonic price model and the additive model, and also include a short model 
-explaining how distance to public transport is affecting the house prices. 
-Chapter three gives a description of the data, which goes over in chapter four
-which gives a explanation of the variables constructed to used in the analysis. 
-Chapter five to seven gives a closer description of the three different types of 
-variables. Chapter eight describe the method behind the models. Chapter nine 
-present the estimation results. Chapter ten and eleven is summing up the thesis 
-in a discussion of a closing conclusion. 
-
-
-   
+The thesis is structured as follow: The first chapter gives a short
+introduction to the Copenhagen metro system, the second chapter explains the 
+theory behind the hedonic price model and the additive model, and also includes
+a short model explaining how distance to public transport is affecting the 
+house prices. Chapter three gives a description of the dataset, which goes over
+in chapter four which gives an explanation of the variables constructed to use 
+in the analysis. Chapter five to seven gives a closer description of the three 
+different types of variables. Chapter eight describes the method behind the 
+models. Chapter nine presents the estimation results. Chapter ten and eleven is 
+summing up the thesis in a discussion of a closing conclusion. 
