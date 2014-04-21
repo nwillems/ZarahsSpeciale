@@ -17,21 +17,21 @@ during the period January $2000$ to April $2013$, in Copenhagen, Frederiksberg
 excluded. The dataset is separated in two periods, the time before and after the 
 metro station nearest the apartment were opened. The analysis does not account 
 for the announcement- or negative effect caused by the construction sites 
-due to the metro expansion.  
+due to the metro expansion since $2011$.  
  
 The analysis includes three groups of variables: \textit{Characteristics}, 
-\textit{Spatial} and \textit{Neighborhood}. \textit{Characteristics} describes the apartment. It is variables like size in 
+\textit{Spatial} and \textit{Neighborhood}. \textit{Characteristics} describes the apartment, it is variables like size in 
 square meters, number of rooms, age of the building, units in the building and 
-floor. \textit{Spatial} explains distance to the metro station, park and 
+floor. \textit{Spatial} explains distance to the metro station, parks and 
 daycare. \textit{Neighborhood} includes average income in the apartments 
 and school ranking, based on the average of grade-average for graduates. 
 
 
 The analysis is done by setting up two econometric models:  A 
-hedonic price effect model based on Rosen's theory from $1974$ and a additive model 
+hedonic price effect model based on Rosen's theory from $1974$ and an additive model 
 inspired by Hastie and Tibshirani( $1990$). 
 
-The hedonic price model fit a function of residential prices, using the natural 
+The hedonic price model fits a function of residential prices, using the natural 
 logarithm to a set of co-variates. 
 
 The additive model utilizes cubic smoothing splines to include a non-linear effect
@@ -40,15 +40,14 @@ and give more flexibility to the model, to better capture the spatial dependence
 The additive model includes two concepts ``spline functions'' and ``smoothers''.  
 A spline function is used in the construction of a spline curve, where the 
 spline curve is used to create a smoothing curve. The spline curve is a curve 
-reacted by a piece wise polynomial, where two or more polynomials are combined 
+created by a piecewise polynomial, where two or more polynomials are combined 
 to create a curve. The smoother is a technique to summarize the trend for a 
-response variable $Y$ and a function of one or more explanatory variables. The 
-practical by a smoothing is that it does not use any fixed form on the 
-explanatory variables.  An example of a smoother is the 
-``Moving average''-technique. The smoother is simply building upon the idea that 
-the dataset is split into pieces and on each piece of the dataset is 
-fited an average, simple regression or polynomials, differ from the technique
-there is used.
+response variable $Y$ and a function of one or more explanatory variables. 
+Smothers does not rely on a fixed form for the explanatory variables, thereby 
+allowing a non-linear relationship. An example smoother is the 
+``Moving average''-technique. Smoothers are building upon the idea, that a 
+dataset is split into smaller intervals, and each group is then fitted based on
+either average, simple regression or polynomials.
 
 An important issue in the analysis is the trade-off between variance and 
 bias, which plays an important role when the dataset is split into smaller 
@@ -56,26 +55,22 @@ intervals. A large interval produces a curve with high degree of smoothing,
 and estimates with low variance and high bias, because of high degree of 
 smoothing and therefore greater distance between actual curve and smoothing 
 curve.  The opposite will happen with small intervals, where the variance is 
-high and the bias small.  In the additive model, are used a function called 
-cubic smoothing spline, to balance the trade-off between variance and 
-bias, is included a parameter that accounts for that. 
+high and the bias small.  The additive model, uses a cubic smoothing spline 
+function. A parameter to balance between bias and variance is included in the 
+smoothing function
 
-The results from the hedonic model shows a decreasing relation between house prices and 
+The results from the Hedonic model shows a decreasing relation between house prices and 
 meters to a metro station. Apartment sales between $0$ and $200$ meters to a 
 station, have experienced a high increase in the house prices after the 
-station was opened. It is in that relation important to notice that some of 
-the 
-effect, can simply be because this apartments also was the one suffering the 
-most from the noise and dust from the construction site, and therefore have
-the prices on this apartment, been pushed down even more under the building 
-process, and therefore will some of the raise in prices be related to the 
-removing of the construction site, and not because the apartment, now is 
-closer to a metro station.
+station was opened. It is important to note, that some parts of this 
+relationship can simply be due to lower prices during construction, which the 
+apartments further away has not been suffering from, and thereby not from being
+closer to the metro station.
 
 The results from the additive model, shows that the negative externalities by 
 living close to a metro station matters. The model proves an upwards trend 
 from $0$ to $300$ meters from a metro station, while after $300$ meters to the station, 
-the effect on residential prices is decreasing if the apartment it placed further away 
+the effect on residential price is decreasing if the apartment it placed further away 
 from the metro station.   
 
 The thesis is structured as follows: The first section gives a short
