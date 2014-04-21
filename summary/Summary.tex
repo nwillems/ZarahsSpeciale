@@ -19,54 +19,49 @@ metro station nearest the apartment were opened. The analysis does not account
 for the announcement- or negative effect caused by the construction sites 
 due to the metro expansion.  
  
-The analysis includes three groups of variables: \textit{characteristics}, 
-\textit{spatial} and \textit{neighborhood}. \textit{Characteristics} describes the apartment. It is variables like size in 
+The analysis includes three groups of variables: \textit{Characteristics}, 
+\textit{Spatial} and \textit{Neighborhood}. \textit{Characteristics} describes the apartment. It is variables like size in 
 square meters, number of rooms, age of the building, units in the building and 
 floor. \textit{Spatial} explains distance to the metro station, park and 
-daycare. \textit{Neighborhood}  include average income in the apartments 
+daycare. \textit{Neighborhood} includes average income in the apartments 
 and school ranking, based on the average of grade-average for graduates. 
 
 
 The analysis is done by setting up two econometric models:  A 
-hedonic price effect model based on Rosen's theory from $1974$ which fits a 
-function of house prices, the analysis uses the natural logarithm to a 
-set of co-variates,  and an additive model using cubic smoothing splines to 
-include a non-linear effect and give more flexibility to the model, to better 
-capture the spatial dependence. The additional model is inspired by Hastie and 
-Tibshirani( $1990$). 
+hedonic price effect model based on Rosen's theory from $1974$ and a additive model 
+inspired by Hastie and Tibshirani( $1990$). 
 
+The hedonic price model fit a function of residential prices, using the natural 
+logarithm to a set of co-variates. 
 
-The additive model uses a technique to fit non-linear relationships to 
-multivariate data. The additive model includes two concepts "`spline functions"
-' and "`smoothers"'.  A spline function is used in the construction of a 
-spline curve, where the spline curve is used to create a smoothing curve.  
-The spline curve is a curve reacted by a piece wise polynomial, where two or 
-more polynomials are combined to create a curve. The smoother is a technique to
-summarize the trend for a response variable $Y$ and a function of one or more 
-explanatory variables. The practical by a smoothing is that it does not use 
-any fixed form on the explanatory variables.  An example of a smoother is the 
-"`Moving average"'-technique. The smoother is simply building upon the idea 
-that the dataset is split into pieces and on each piece of the dataset is 
+The additive model utilizes cubic smoothing splines to include a non-linear effect
+and give more flexibility to the model, to better capture the spatial dependence. 
+
+The additive model includes two concepts ``spline functions'' and ``smoothers''.  
+A spline function is used in the construction of a spline curve, where the 
+spline curve is used to create a smoothing curve. The spline curve is a curve 
+reacted by a piece wise polynomial, where two or more polynomials are combined 
+to create a curve. The smoother is a technique to summarize the trend for a 
+response variable $Y$ and a function of one or more explanatory variables. The 
+practical by a smoothing is that it does not use any fixed form on the 
+explanatory variables.  An example of a smoother is the 
+``Moving average''-technique. The smoother is simply building upon the idea that 
+the dataset is split into pieces and on each piece of the dataset is 
 fited an average, simple regression or polynomials, differ from the technique
 there is used.
 
 An important issue in the analysis is the trade-off between variance and 
 bias, which plays an important role when the dataset is split into smaller 
 intervals. A large interval produces a curve with high degree of smoothing, 
-and 
-estimates with low variance and high bias, because of high degree of 
+and estimates with low variance and high bias, because of high degree of 
 smoothing and therefore greater distance between actual curve and smoothing 
 curve.  The opposite will happen with small intervals, where the variance is 
 high and the bias small.  In the additive model, are used a function called 
 cubic smoothing spline, to balance the trade-off between variance and 
 bias, is included a parameter that accounts for that. 
 
-
-
-
-
-The hedonic model estimates show a linear relation between house prices and 
-meter to a metro station. Apartment sales between $0$ and $200$ meters to a 
+The results from the hedonic model shows a decreasing relation between house prices and 
+meters to a metro station. Apartment sales between $0$ and $200$ meters to a 
 station, have experienced a high increase in the house prices after the 
 station was opened. It is in that relation important to notice that some of 
 the 
@@ -77,18 +72,13 @@ process, and therefore will some of the raise in prices be related to the
 removing of the construction site, and not because the apartment, now is 
 closer to a metro station.
 
-The additive model, which gives additional flexibility permits more accurate 
-estimation of the underlying spatial structure of the data. This should lead 
-to more reliable results for the impact of having an apartment close to a 
-metro station.
-The estimates for the additive model, shows that the negative externalities by 
-living close to a metro station matters. The model proves an upgoing trend 
-from $0$
-to $300$ meters from a metro station, while after $300$ meters to the station, 
-the effect on house prices is falling if the apartment it placed further away 
+The results from the additive model, shows that the negative externalities by 
+living close to a metro station matters. The model proves an upwards trend 
+from $0$ to $300$ meters from a metro station, while after $300$ meters to the station, 
+the effect on residential prices is decreasing if the apartment it placed further away 
 from the metro station.   
 
-The thesis is structured as follow: The first chapter gives a short
+The thesis is structured as follows: The first chapter gives a short
 introduction to the Copenhagen metro system, the second chapter explains the 
 theory behind the hedonic price model and the additive model, and also includes
 a short model explaining how distance to public transport is affecting the 
@@ -97,5 +87,4 @@ in chapter four which gives an explanation of the variables constructed to use
 in the analysis. Chapter five to seven gives a closer description of the three 
 different types of variables. Chapter eight describes the method behind the 
 models. Chapter nine presents the estimation results. Chapter ten and eleven 
-is 
-summing up the thesis in a discussion of a closing conclusion. 
+is summing up the thesis in a discussion of a closing conclusion. 
