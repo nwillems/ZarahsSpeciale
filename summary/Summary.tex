@@ -12,6 +12,21 @@ distance and prices, while Chen et al. ($1997$) proves that the same effect is
 not present for the houses nearest to the stations, while maintaining similar 
 properties for the remaining houses.
 
+The dataset used in the analysis is covering all apartments sold more than once 
+during the period January $2000$ to April $2013$, in Copenhagen, Frederiksberg 
+excluded. The dataset is separated in two periods, the time before and after the 
+metro station nearest the apartment were opened. The analysis does not account 
+for the announcement- or negative effect caused by the construction sites 
+due to the metro expansion.  
+ 
+The analysis includes three groups of variables: \textit{characteristics}, 
+\textit{spatial} and \textit{neighborhood}. \textit{Characteristics} describes the apartment. It is variables like size in 
+square meters, number of rooms, age of the building, units in the building and 
+floor. \textit{Spatial} explains distance to the metro station, park and 
+daycare. \textit{Neighborhood}  include average income in the apartments 
+and school ranking, based on the average of grade-average for graduates. 
+
+
 The analysis is done by setting up two econometric models:  A 
 hedonic price effect model based on Rosen's theory from $1974$ which fits a 
 function of house prices, the analysis uses the natural logarithm to a 
@@ -20,29 +35,6 @@ include a non-linear effect and give more flexibility to the model, to better
 capture the spatial dependence. The additional model is inspired by Hastie and 
 Tibshirani( $1990$). 
 
-The two models are estimated using a dataset covering all sales for 
-apartments sold more than one time doing the period MÅNED $2000$ to April $
-2013$. The 
-dataset is separated in two periods, the time before and after the metro 
-station closest to the apartment was opened. Since $2005$ it has been decided 
-that the metro system should be expanded with an extra line, and from $2011$ 
-the contstruction sites were established. The dataset could consist of 
-apartment 
-sales that are positively affected by an announcement effect or negatively 
-affected 
-be the noise from a construction site, the analysis does not take into account 
-the expansion of the metro system, it only looks at  the finished $22$ 
-stations, and how they have affected the apartment sales in Copenhagen, 
-exclusive Frederiksberg. % Frederiksberg inklusiv?
-
-The analysis includes three groups of variables: characteristics variable, 
-spatial variable and neighborhood variables. The characteristics variables 
-include variables describing the apartment. It is variables like size in 
-square 
-meters, number of rooms, age of the building, units in the building and 
-floor. The spatial variables explain distance to the metro station, park and 
-daycare. The neighborhood variables include average income in the apartments 
-and school ranking, based on the average of grade-average for graduates. 
 
 The additive model uses a technique to fit non-linear relationships to 
 multivariate data. The additive model includes two concepts "`spline functions"
