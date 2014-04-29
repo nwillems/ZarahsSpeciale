@@ -1,0 +1,144 @@
+\section{Databeskrivelse}
+
+Datasættet er et udtræk fra et større datasæt, som er blevet skabt i forbindelse med et 
+projekt, hvor værdisætningen af bykvaliteter blev belyst. Det består i 
+udgangspunktet af $50.203$ lejlighedshandler i Københavns Kommune og $65$ 
+variable. Datasættet strækker sig over årene $2000-2013$. Der er således ikke 
+oplysninger på handelspriser fra før $2000$. I perioden $2002-2007$ blev de 
+første metrostationer åbnet, og i $2012$ blev placering for de nye 
+metrostationer, som kommer ved udbygningen af netværket, offentliggjort. 
+Datasættet indeholder konstruktionsvariable,nabolagsvariable og rumlige 
+variable. 
+
+Konstruktionsvariablene stammer fra OIS databasen, som er Den Offentlige 
+Informationsserver. OIS databasen samler en række oplysninger vedrørende 
+ejendomme i Danmark. Oplysningerne stammer fra en række landsregistre som 
+Bygnings- og Boligregisteret(BBR), Det Fælleskommunale Ejendomsstamregister(
+ESR), Planregisteret(PLAN), Statens Salgs- og Vurderingsregister(SVUR) osv. I 
+datasættet er BBR, ESR og SVUR grundlag for konstruktionsvariablene. 
+
+Bygnings- og Boligregisteret(BBR) blev etableret i $1977$. Formålet med 
+registeret er ved kommunernes foranstaltning, at tilvejebringe en systematisk 
+registrering af bolig- og bygningsforholdene til brug for såvel statslige som 
+kommunale myndigheders administration og planlægning (BBR-instruksen). BBR 
+indeholder grunddata, om bygnings- og boligforhold samt tekniske anlæg m.v. 
+og er en entydig registrering af alle bygninger, bolig- og erhvervsenheder 
+samt de i registeret optagne tekniske anlæg og tekniske enheder m.v. samt de 
+dertil knyttede adressebetegnelser(BBR-inskruksen).
+Det samlede BBR-system består af tre register: BBR-ændringsregister, BBR-
+stamregister og BBR-historisk. BBR-ændringsregister indeholder oplysninger om 
+verserende byggesager, så som tilbygning og nedrivninger. Der indberettes til 
+dette register gennem kommunernes byggesagsbehandling, og registreret 
+indeholder information såsom dateringer, der afspejler byggeprocessen. BBR-
+stamregister indeholder oplysninger om den aktuelle status for 
+bygningsbestanden og bestanden af boliger og erhvervs- og 
+institutionsenheder. BBR-historisk register indeholder oplysninger om 
+gennemførte ændringer i bygnings-og boligmassen. Nedenfor er vist en figur, 
+der viser registeropbygningen i BBR-systemet. 
+
+\begin{figure}[H]
+	\centering
+		\caption{BBR-systemet}
+		\includegraphics[scale=0.6]{BBR}
+\end{figure}
+
+Udover denne opdeling i register, eksisterer der også en niveauopdeling i BBR-
+systemet. For alle bebyggede ejendomme i BBR-registeret er der foretaget en 
+gruppering af oplysningerne på baggrund af, at der er oplysninger, der kan 
+være fælles for en ejendom eller en bygning. Mens der er oplysninger, der kun 
+er relateret til en enkel boligenhed.   
+
+Oplysninger er således først registeret på ejendomsniveau, derefter på den 
+enkelte bygning og derefter ned på enhedsniveau (den enkelte bolig). Jf. 
+cirkulære af $6$. januar $1977$ om etablering af bynings- og boligregistring 
+er ejednomsniveauet defineret dels som arealer, som i matriklen er anført 
+under et matrikelnummer, eller som er anført under flere matrikelnumre, men 
+skal ses i fællesskab og dels arealer, der tilhører samme ejer og udgør en 
+driftsenhed. Endvidere kan en ejendom også ses, som en bygning opført på 
+lejet grund. Ved en bygning forstås en sammenhængende bebyggelse, som er 
+opført som en selvstændig ejendom, og som i det væsentligste er opført af 
+ensartede materialer og med omtrent samme antal etager. Endvidere skal 
+bebyggelsen have ensartede adgangsforhold. En boligenhed eller erhvervsenhed 
+forstås som et sammenhængende areal i en bygning, hvortil der er selvstændig 
+adgang med tilknyttet adresse( CIR nr 6 af 06/01/1977 Historisk).  
+
+I figuren nedenfor er opdelingen af de tre forskellige niveauer vist. 
+
+\begin{figure}[H]
+	\centering
+	\caption{Niveauopdelling i BBR}
+		\includegraphics[scale=0.7]{pyramide}
+		\end{figure}
+
+Det fælleskommunale ejendomsstamregister er et landsdækkende register, der 
+indeholder oplysninger om ejerforhold, matrikulære forhold, vurderinger og 
+ejendomsskatter. Det er kommunerne, der har ansvaret for at opdatere 
+datainformationerne i ESR. 
+
+Det sidste register, der hentes information fra, er Statens salgs- og 
+vurderingsregister SVUR, som er et landsdækkende register, som indeholder 
+vurderingsoplysninger, herunder oplysninger om ejendoms- og grundværdi. 
+Registeret indeholder bl.a. oplysninger om købssummerne på boligenheder. 
+Oplysningerne er baseret på data fra BRR-systemet. SVUR bliver af kommunerne 
+brugt til at beregne ejendomsskatten. Det er SKAT, der har dataansvaret for 
+SVUR, og oplysningerne bliver opdateret gennem oplysninger fra ESR.  
+
+
+\subsection{Fejkilder}
+Hvad der er vigtigt, at tage højde for, når man arbejder med data fra BBR-
+systemet er, at der er forbundet fejlkilder med BBR-data. I $2007$ lavede 
+Erhvervs- og bygningsstyrelsen(i dag delt i Erhvervsstyrelsen og 
+Energistyrelsen) et overblik over fejl og mangler i BBRsystemet. Her fastslås 
+det, at der i mange af de mellemstore købstadskommuner, manglede at blive 
+indberettet om arealudvidelser på ejendomme. Samlet vurderede man dengang, at 
+landets samlede areal af fritliggende enfamiliehuse var $5$ procent større 
+end det areal, der var registreret i BBR, da undersøgelsen blev foretaget.  Da 
+det er ejerne af bygningen, der har ansvaret for at anmelde arealudvidelser i 
+deres bolig, og skatten beregnes på baggrund af boligarealet, er der nogle, 
+der har et incitament til at undlade at melde udvidelsen, også selvom man 
+bliver pålagt en bøde hvis det opdages, så generelt er arealstørrelsen 
+underestimeret. Dog skal det nævnes, at der i undersøgelsen fra $2007$ blev 
+fundet, at usikkerheden i København var forholdsvis lille. Udover 
+arealstørrelsen som fejlkilde, forekommer der også fejl på oplysninger om 
+afløb, forsyningsforhold, varmeinstallation, bad-og toiletforhold og 
+tagdækningsmateriale m.v. i $1-10$ procent af alle bygninger. Fejlprocenten 
+synes højest for de forhold, der oftest ændres i en bygnings levetid (
+Erhvervs- og byggestyrelsen, 2007). 
+
+Da SVUR og ESR hænger sammen med BBR-registeret, vil de fejl der eventuelt 
+sker i BBR, kunne påvirke de to andre registre. 
+De konstruktionsvariable, som er hentet fra registrene og indgår i datasætter, 
+er bl.a. antal værelser, størrelse på bolig, alder på boligen og om der er 
+sket ombygninger, antal toiletter og byggematerialet i boligen.  
+
+\subsection{GIS - Geografiske informationssystem}
+De rumlige variable er lavet i det geografiske informationssystem(GIS). GIS 
+er et IT-værktøj som lagrer, kontrollerer og viser data relateret til en 
+geografisk placering på jorden. 
+GIS er baseret på kendskabet til en placering. Denne placering kan være 
+baseret på længde- og breddegrader, adresse eller postnummer. På baggrund af 
+placering kan man bl.a. beregne de rumlige variable som beskriver 
+tilgængeligheden til eksternaliteter. 
+I det pågældende datasæt er alle de rummelige variable opgivet i euklidiske 
+afstande, og indeholder bl.a. afstand til metro, motorvej, børneinstitutioner 
+og grønne områder. 
+
+Den euklidiske afstand beregnes ved hjælp af længde- og breddegraderne, 
+placering for den enkelte bolig, og den nærmeste metrostation. Afstanden 
+findes ved den korteste afstand  i fugleflugt til den metrostation, der er 
+nærmest den givne bolig.
+%
+\begin{figure}[H]
+	\centering
+	\caption{Afstanden mellem bolig og metrostation}
+		\includegraphics[scale=0.7]{euk_afstand}
+				%\note{(Kilde: Agostini et al., 2008)}
+\end{figure}
+%
+Afstanden d er beregnet som $d=\sqrt{((E_1-E_0 )^2+(N_1-N_2 )^2) }$
+
+Udover de nævnt variable baseret på afstande, indeholder datasættet også 
+variable der fortæller lidt om befolkningen i området bl.a. gennem 
+gennemsnitlige indkomst og afgangselevernes gennemsnitlige karaktergennemsnit for den enkelte skole, som varierer alt efter 
+boligens placering. 
+

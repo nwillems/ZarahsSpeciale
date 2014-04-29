@@ -1,0 +1,834 @@
+\section{Teori}
+%\label{sec:Teori}
+I dette afsnit beskrives modellerne, som senere benyttes i den empiriske 
+analyse. Først forklares den hedoniske prisfastsættelsesmetode, som benyttes 
+til en simpel parameterestimation. Den hedoniske prisfastsættelsesmetode 
+tager 
+udgangspunkt i teorien beskrevet af Rosen ($1974$). 
+
+Den Hedoniske Prisfastsættelsesmetode er den mest udbredte inden for 
+litteratur, som har beskæftiget sig med estimation af priseffekten på en 
+bolig placeret tæt på offentlige transportmuligheder, og derfor benyttes den 
+også i denne opgave. 
+
+Udover en præsentation af den hedoniske teoriramme forklares også en mindre 
+model med udgangspunkt i teori beskrevet af Alonso ($1964$). Denne model 
+viser sammenhængen mellem pris på boligen og afstand til offentlige 
+transportmidler, her metroen. 
+
+Som den sidste del af teoriafsnittet beskrives teorien bag Den
+Additive Model, og hvordan den kan bruges i analysen. I den forbindelse 
+beskrives splines og smoothingfunktioner og hvilken rolle, de spiller i en Den 
+Additiv Model.
+   
+\subsection{Den Hedoniske Prisfastsættelsesmetode}
+\label{subsec:Den_hedoniske_metode}
+En analyse af boligmarkedet er en kompliceret opgave. I en analyse vil man 
+ofte have kendskab til indkomsten blandt potentielle købere og et 
+forholdsvist godt kendskab til, hvad der bliver brugt af midler på godet ``
+bolig''. Til gengæld er der mangelfulde observationer forbundet med prisen på 
+karakteristikaene ved en bolig, hvilket hænger sammen med den differentierede 
+værdisætning, der eksisterer hos de forskellige typer af agenter. Boligen er 
+ofte den største investering, der fortages i livet, og udgør ofte en stor del 
+af en forbrugers samlede formue. Samtidig bruger mange størstedelen af 
+indkomsten på bolig hver måned. Dette gør boligmarkedet til en interessant 
+størrelse at analysere, da den har en stor indflydelse på den økonomiske 
+velstand. På baggrund af den store interesse i at analysere boligmarkedet, er 
+der lavet modeller, som prøver at tage højde for, at godet bolig er sammensat 
+af mange forskellige karakteristika, som alle kan prisfastsættes.  Udover den 
+særlige sammensætning af en boligs pris i forhold til værdien på 
+karakteristikaene, er en boligs pris ofte tæt korreleret med boligens 
+placering. To boliger kan af udformning være fuldstændige identiske, men de 
+vil aldrig have præcis den samme placering, hvilket betyder, at alle boliger 
+vil være forskellige. Dette understreger et væsentligt problem forbundet med 
+modellering af boligmarkedet: der eksisterer en stor mængde af heterogenitet, 
+grundet store forskelle på boliger.    
+
+Grundet disse særlige forhold på boligmarkedet benyttes ofte den hedoniske 
+prisfastsættelsesmetode til at værdiansætte en bolig's pris. Der tages i 
+beskrivelsen af den hedoniske prisfastsættelsesmetode udgangspunkt i teorien 
+fremstillet af Rosen ($1974$).  Baseret på den hedoniske hypotese om, at 
+goder er værdiansat på baggrund af de nyttebærende attributter eller 
+karakteristika, fremstiller Rosen ($1974$) en model med 
+produktdifferentiering. 
+
+\subsection{Implicitte markeder} 
+En vigtig faktor i den hedoniske model er implicitte markeder, da de 
+hedoniske priser er defineret som den implicitte pris af de enkelte 
+attributter forbundet med ejendommen. Notationen for implicitte markeder 
+betegner processen af produktion, udveksling og forbrug af goder, der 
+hovedsagligt handles i bundter. Det eksplicitte marked, med observerede 
+priser og transaktioner er for bundterne som et samlet gode (Sheppard, $1999$). På det 
+eksplicitte marked eksisterer der flere implicitte markeder for alle 
+enhederne i bundterne, som har en væsentlig rolle, når bundterne ikke er 
+homogene, men varierer grundet variationen af indholdet i bundterne. Boliger 
+er et forholdsvist hetrogent gode, men handles på det samme marked, dette 
+skyldes, at elementerne i bundet bolig ofte er identiske, dog med variation i 
+kvaliteten og kvantitet.  I den hedoniske tilgang antages det, at selvom det 
+overordnede gode er forskelligt, vil komponenterne i godet bolig, være 
+forholdsvis homogene og således have en ens prisstruktur(Sheppard, $1999$).
+Den implicitte prisfunktion er således et udtryk for den marginale pris på et 
+karakteristika,  som bliver afsløret indirekte ved køb af en bolig. 
+
+\subsection{Den Hedoniske Prisfunktion}
+Den hedoniske model forudsætter, at køber og sælger på baggrund af boligens 
+karakteristika, vil nå frem til en pris, der afspejler den implicitte pris, 
+som køber og sælger tilsammen sætter på de forskellige karakteristika, som 
+boligen og dens beliggenhed har. Købere vil på sådan et marked lede efter den 
+bolig, hvis kombination af karakteristika har den største værdi for dem, mens 
+de samtidig ønsker at betale så lidt som muligt for boligen. Omvendt vil 
+sælger lede efter en køber, der værdsætter netop den kombination af 
+karakteristika, som de udbyder for dermed at opnår den højeste mulige pris, 
+for den bolig de ønsker at sælge (Panduro og Veie, $2013$).  
+ %
+En given bolig er således beskrevet ved en vektor $z$, som indeholder alle 
+karakteristikaene beskrevet ved $z_1, \cdots , z_n$ : 
+%
+\begin{equation} 
+	z=(z_1,z_2,...,z_n)
+\end{equation} 
+%
+Boligens pris vil ofte afhænge af forskellige typer af karakteristika, som 
+kan samles i nogle overordnede grupper: De strukturelle karakteristika, der 
+er knyttet til boligens størrelse, antal værelser og alder på boligen. 
+Omgivelseskarakteristikaene, der er knyttet til støj, grønne områder og 
+adgang til offentlig transport og til sidste nabolagskarakteristika forbundet 
+med nærliggende skolers standard, forekomsten af kriminalitet og mulighed for 
+indkøb.  
+%
+Disse forskellige værdier af $z$ og $n$, kan samles i et udtryk for 
+ligevægtsprisen på det pågældende gode. 
+%
+\begin{equation} \label{eq:price}
+	p=p(z)=p(z_1,z_2,...,z_n)
+\end{equation}
+%
+Udtrykket i ~\ref{eq:price} beskriver den hedoniske prisfunktion og er 
+ligevægtsprisen på et givent marked, prisen forbrugeren betaler for en bolig, 
+kan af forbrugeren påvirkes ved, at der vælges alternative karakteristika.
+
+Det antages, at forbrugerne kun investerer i ét hus. I tilfælde med flere 
+huse med samme ejer antages, at husene er anskaffet til andet formål end 
+helårsbeboelse og således vil indgå separat i en nyttefunktion. Samtidig 
+antages det, at den enkelte husholdning er pristager på markedet. Med 
+udgangspunkt i teorien fremstillet af Rosen ($1974$) ser nyttefunktionen 
+således ud:  
+%
+\begin{equation} \label{eq:nytte}
+	U(z_1,z_2,...,z_n,x,s)
+\end{equation}
+%
+Hvor $z_i(i=1,...,n)$ er karakteristikaene for den enkelte bolig, $x$ er 
+forbruget af andre vare end bolig og $s$ indeholder socioøkonomiske variable. 
+%
+Nyttefunktionen er underlagt en budgetbetingelse: 
+%
+\begin{equation} \label{eq:budget}
+	y=P(z)+x
+\end{equation}
+%
+Hvor $y$ er forbrugerens normaliseret indkomst. Alle priser og indkomster 
+antages at være normaliseret ved, at dividere med prisen på $x$, hvor $x$ 
+antages at være et Hicksiansk sammensat gode, dvs. Et gode der er produceret 
+til at repræsentere en større mængde af goder, ofte indeholdende alle andre 
+goder end det, der analyseres. Samtidig antages det, at nyttefunktionen er 
+strengt konkav (Palmquist, $2005$). 
+% 
+Ved hjælp af lagrangemetoden kan førsteordensbetingelserne udledes:
+%
+$$L=U(z_1,z_2,...,z_n,x,s)-\lambda(P(z)+x-y)$$
+
+$$\frac{\partial L}{z_i}=\frac{\partial U}{z_i}-\lambda \cdot P'(z) = 0 
+\rightarrow U_{z_i} = \lambda \cdot p_i $$
+
+$$\frac{\partial L}{x} = \frac{\partial U}{x}-\lambda = 0 \rightarrow U_{x} = 
+\lambda$$
+
+$$\frac{\partial L}{\lambda} = (P(z)+x_i-y)=0 \rightarrow P(z)+x=y$$
+%
+Den marginale substitutions rate mellem karakteristika ved bolig og andre 
+varer, kan udtrykkes som marginalprisen på en karakteristika (den hedoniske 
+pris af karakteristika i) ved en bolig: 
+%
+\begin{equation} \label{eq:subrate}
+	\frac{U_{z_i}}{U_x} = \frac{\lambda \cdot p_i}{\lambda} = p_i 
+\end{equation}
+%
+I ligningen ~\ref{eq:subrate} svarer $p_i = p'(z)$.
+%
+I figurerne nedenfor er den hedoniske prisfunktion og den implicitte pris vist(
+Day, $2001$): 
+%
+\begin{figure}[H]
+	\centering
+	\caption{Den hedoniske prisfunktion}
+		\includegraphics[scale=0.8]{figur_prisfkt}
+		\label{fig:hedonisk}
+		\item{Kilde: Day, B. ``The Theory of Hedonic Markets: Obtaining welfare measures for changes in enviromental quality using hedonic market data'', $2001$} 
+\end{figure}
+%
+\begin{figure}[H]
+\centering
+\caption{Implicitte pris}
+		\includegraphics[scale=0.8]{implicitpris}
+\label{fig:implicit}
+	\item{Kilde: Day, B. ``The Theory of Hedonic Markets: Obtaining welfare measures for changes in enviromental quality using hedonic market data'', $2001$} 
+\end{figure}
+%
+Den hedoniske prisfunktion har først en stejl stigning og således ligger den 
+implicitte pris højt. Man vil således betale mere for at få en bolig med lidt 
+mere af en ønsket karakteristika. Som den hedoniske prisfunktion flader ud, 
+vil den implicitte pris falde, da forbrugeren ikke længere ønsker at betale 
+så meget for det ekstra gode.  
+
+For at færdiggøre modellen er det relevant at vide, hvor meget en forbruger 
+er villig til at betale for en bolig med en speciel sammensætning af 
+karakteristika. Først skal det dog nævnes, at forbrugerne er bundet af, hvor 
+meget de kan bruge af deres indkomst på bolig. Dette kan udtrykkes som et ``bid'' (bud), der er 
+afhængig af indkomst og forbrug af andre varer, $x$.  
+%
+$$\theta = y-x$$
+%
+Ligningen ovenfor repræsenterer Rosens ``bid function'' (budfunktion). 
+Funktionen beskriver den største mængde en husholdning er villig til at betale 
+for en bolig med karakteristikaene $z$ således, at de opnår den ønskede nytte 
+$u$, med indkomsten $y$ (Day, $2001$). 
+%
+Nyttefunktionen kan nu skrives således: 
+%
+\begin{equation}
+U(z_1,z_2,...,z_n,y-\theta,s)=u
+\label{eq:nytte_bud}
+\end{equation}
+%
+Under antagelse af $\theta = \theta(z,u,y,s)$
+%
+I figuren nedenfor er budfunktionen beskrevet. Således ses, at ved en lav 
+mængde af karakteristikaene, er forbrugeren villig til at betale en højere 
+pris for at få mere af det ønskede karakteristika. Hældningen på budkurven 
+vil være defineret ved $\frac{U_(z_i)}{U_x}$,  $U_(z_i)$ som er den den 
+marginalnytte på karakteristika ved boligen og $U_(x)$  som er marginalnytten
+på vare $x$. 
+%
+\begin{figure}[H]
+	\centering
+		\caption{Budkurve}
+		\includegraphics[scale=0.8]{Budkurve}
+			\item{Kilde: Day, B. ``The Theory of Hedonic Markets: Obtaining welfare measures for changes in enviromental quality using hedonic market data'', $2001$} 
+		\end{figure}
+%
+Da alle husholdninger er forskellige, vil de således have forskellige 
+budkurver, og ofte også efterspørge forskellige boliger. Hvad der dog vil 
+være gældende for alle husholdninger er, at deres budkurve vil være tangent 
+til den hedoniske prisfunktion og der, hvor kurverne skærer, vil være det 
+mest optimale bud(pris på boligen) på markedet for køber og sælger(Day,$2001$)
+. 
+%
+\begin{figure}[H]
+	\centering
+	\caption{Sammenhængen mellem prisfunktionen og budkurven}
+		\includegraphics[scale=0.8]{budkurve_2}
+			\item{Kilde: Day, B. ``The Theory of Hedonic Markets: Obtaining welfare measures for changes in enviromental quality using hedonic market data'', $2001$} 
+		\end{figure}
+%
+\newpage
+\subsection{Offentlig transport og boligprisen}
+En boligs pris er bestemt af karakteristikaene ved boligen og særligt 
+boligens placering. En boligs placering er unik, og udgør en væsentlig del af 
+den pris boligen tillægges. Dette hænger bl.a. sammen med adgangen til 
+offentlige transportmidler og transporttiden. Samtidig afhænger boligens pris 
+også af afstanden til boligejerens arbejdsplads, og ved opførsel af metroen 
+i København fik det centrale København, hvor mange arbejdspladser er placeret, 
+endnu en offentlig transportmulighed, som har kunne være med til at mindske 
+transporttiden for arbejdstagere. 
+Alonsos ($1964$ ) og C. A. Agostini og G. A. Palmucci ($2008$) opstiller 
+følgende simple model, der viser sammenhængen mellem pris og afstand til en 
+metrostationen. 
+%
+\begin{equation}
+\max_{m,d,x}V(m,d,x)
+\end{equation}
+%
+betinget af $Y=x+P(d)m+T(d)$
+%
+Hvor $m$ er boligstørrelse, $d$ er afstand fra bolig til nærmeste 
+metrostation, $x$ beskriver alle resterende goder forbrugeren konsumerer, $P(d
+)$ er pris per kvadratmeter per bolig, $T(d)$ er transportomkostningerne og $
+Y$ er indkomsten for den pågældende forbruger. Ved at medtage afstanden i den 
+individuelle nyttefunktion, fanges disnytten som  forbrugeren har ved at nå 
+til nærmeste metrostation (Agostini og Palmucci, $2008$). 
+ 
+Jævnfør  Alonso($1964$) antages nytten $V$ at være kontinuert, dobbelt 
+differentiabel og strengt kvasi-konkav. Nytten er stigende med boligstørrelsen, 
+$m$ og resterende goder, $x$, og aftagende med afstanden, $d$. Pris per 
+kvadratmeter, $P(d)$ vil være aftagende med afstanden $d$, således at $\frac{\partial P(d)}{\partial d}<0$ og 
+transportomkostningerne $T(d)$ er stigende med afstanden $d$, og dermed følger 
+ $\frac{\partial T(d)}{\partial d}>0$. Ved hjælp af Lagrange metoden 
+beregnes førsteordensbetingelserne for maksimeringsproblemet. 
+%
+$$L=V(m,d,x)-\lambda(x+P(d)m+T (d)-Y)$$
+
+$$\frac{\partial L}{m} = \frac{\partial V}{m}-\lambda \cdot P(d) = 0 
+\rightarrow V
+_m = \lambda \cdot P_{d}$$
+
+$$\frac{\partial L}{d} = \frac{\partial V}{d}-\lambda (P'(d)m+T'(d))=0 
+\rightarrow
+ V_d =\lambda (P_{d}m+T_d)$$
+
+$$\frac{\partial L}{x} = \frac{\partial V}{x}-\lambda = 0 \rightarrow V_x = 
+\lambda$$
+
+$$\frac{\partial L}{\lambda} = (Y-x-P(d)m-T(d))=0 \rightarrow Y=x+P_{d}m+T{d}$$
+%
+Ved at indsætte $V_x = \lambda$ i $V_m = \lambda \cdot P_{d}$ fås 
+ligevægtsbetingelsen: 
+%
+$$\frac{V_x}{V_m} = \frac{1}{P_{d}}$$
+%
+Der beskriver, at den marginale mængde forbrugeren er villig til at acceptere, 
+for at substituere forbrug af kvadratmeter $m$ i en given bolig for forbrug 
+af 
+andre goder, $x$, er lig den relative pris, $P(d)$, som her er afhængig af 
+afstanden til 
+nærmeste metrostation. 
+%
+Ved at indsætte $V_x = \lambda$ i $V_d=\lambda(P_{d}m+T_d)$ fås 
+ligevægtsbetingelsen: 
+%
+$$P_{d}m = -(T_d - \frac{V_d}{V_x})$$
+%
+Betingelsen viser, at den marginale betalingsvillighed for en ekstra 
+kvadratmeter i boligen, $P_{d}m$, ved stigende afstand, $d$, er aftagende 
+grundet
+stigende marginale transportomkosntinger, $T_d$, som øger den marginale 
+disnytte. 
+
+Den simple model viser, at fra et teoretisk udgangspunkt, bør effekten på 
+boligpriserne være aftagende med afstanden til metrostationen (Agostini og Palmucci, $2008$).
+ En metrostation kan have to effekter, den kan reducere
+transporttiden for de borger, der bor i nærheden af en metrostation, men 
+samtidig kan en metrostation også generere øget mængde af mennesker og højere 
+støjniveau. Disse modsatrettede effekter 
+kan være med til, at skabe en ikke lineær effekt mellem pris og afstand. 
+Grundet muligheden for en ikke lineær sammenhæng, er det muligt, at der for 
+boliger der er placeret meget tæt på en metrostation, vil være forbundet en 
+negativ priseffekt ved opførslen af en metrostation (Chen et al., $1997$).
+
+
+\subsection{Additive model}
+
+Den hedoniske model, som i dette speciale er baseret på en simpel regressions 
+model, hvor den ikke lineære sammenhæng er inkorporeret ved hjælpe af 
+logaritmen i den afhængige variabel, er en simpel og klassisk model til 
+analyser af boligpriser. Modellen kan dog med stor fordel udvides til den 
+additive model der giver et stort potentiale i forhold til estimering af de 
+hedoniske priser, da den tillader mere sofitikerede relationer mellem den 
+enkelte faktor og salgsprisen (Chernih og Sherris, $2004$). 
+
+Den additive model bevarer således mange af de gode egenskaber fra den linære 
+model, men tillægges tilgengæld en større mængde af fleksibilitet. Denne øget 
+fleksibilitet integreres bl.a. ved hjælp af  ``splines'' og ``smoother'' som 
+benyttes i udglatningsfasen i den additive model. De to begreber er centrale 
+for estimeringen af den additive model, og beskrives i de næste afsnit. 
+Grundet den additive models form estimeres denne ved hjælp af en procedure 
+kaldet ``Backfitting algoritme'' denne er også beskrevet i de næste afsnit. 
+
+
+\subsection{Splines og smoothers} 
+
+Kort beskrevet benyttes splinefunktionen til at producere en smoothingkurve 
+på baggrund af en mængde af observationer med spredt variation.  
+
+Begrebet "splines" er rent matematisk en funktion brugt i forbindelse med 
+smoothing(udglatning). En "splinecurve" er en kurve, der stykvis er sammensat 
+af polynomier. To eller flere polynomier forbindes således til en fælles 
+kurve. Der hvor polynomierne forbindes, kaldes "knots". Der findes flere 
+forskellige metoder til produktion af polynomier der kan sættes sammen til 
+kurver f.eks. "Cubic Smoothing Splines" og "thin-plate Smoothing splines".
+
+
+En "smoother" er en teknik til at tilpasse et datasæt en bestemt trend. "
+Smoothers" er et værkstøj til at summere trenden for en responsvariabel Y  som 
+funktion af en eller flere forklarende variable.  Det 
+praktiske ved en "Smoother" er at den ikke antager nogen bestemt form for de 
+forklarende variable (Hastie and Tibshirami, $1990$). 
+De to mest simple smoothing(tilpasnings)
+teknikker er "Moving avaerage smoother" og "LOESS/LOWESS  smoother".  
+"Moving average smoother" kan også ses som glidende gennemsnitstilpasning. 
+Metoden bygger på, at datasættet deles op i mindre dele, hvor på der beregnes 
+en gennemsnitsværdi for alle observationerne indeholdt i det givne interval, 
+derefter rykkes intervallet langsomt fra venstre mod højre og for hver 
+flytning beregnes en ny gennemsnitsværdi. Ved at forbinde alle 
+gennemsnitværdierne, fås den glidende gennemsnitskurve også kaldet "moving 
+average smoother". Intervallerne kan inddeles i forskellige størrelser, dog skal de være ens gennem hele datasættet, samtidig skal der tænkes på, at der hele tiden er en afvejning mellem variation og 
+skævhed. 
+LOESS/LOWESS hvilket svarer til ``locally (weighted) scatterplot 
+smoothing'', ligger i tråd med glidende gennemsnitstilpasning. Her benyttes 
+også intervaller, og intervallet rykkes langsomt mod højre, men i stedet for 
+at beregne en gennemsnitsværdi, benyttes en vægtet lineær regressions model 
+for data i de enkelte opdelte intervaller.  Modellen benytter et polynomium 
+af p'te grad. Ved hjælpe af polynomiefunktionen og intervalopdelinger, 
+opbygges en funktion, der beskriver datavariation punkt for punkt (Zuur, $2012
+$)
+. 
+  
+"Cubic Smoothing Splines" og "Thin-Plate Smoothing Spline" er mere avancerede 
+smoothing metoder. I det næste afsnit beskrives "Cubic smoothing splines'', da de 
+benyttes i den additive model. "Thin -plate smoothing splines"', benyttes 
+ikke i modellen, men omtales senere i diskussion i forhold til forbedring af 
+modellen.
+%
+\begin{figure}[H]
+\centering
+	\caption{Eksempel på cubic spline kurve} 
+		\includegraphics[scale=0.8]{cubic_kurve}
+		\label{fig:ckurve}
+		\item{Kilde: Wood, ``Generalized Additive Models: an introduction with 
+R'', $2006$}
+		\end{figure}
+%
+Figur ~\ref{fig:ckurve} viser hvordan en cubic spline er konstruerert. Kurven 
+består af sektionen af cubic polynomier, som er sammensat til en kontinuert 
+kurve. Kurven består af ialt $7$ sektioner af cubic. Der er $6$ 
+forbindelsespunkter(knots) og 2 endepunkter. Den stiplede linje er 
+splinkurven. Hver sektionen har forskellige 
+koefficienter, men i forbindelsespunkterne, som her er markeret med en cirkel, 
+vil den matche nabosektionen i værdi 
+og de to første afledte (Wood, 2006). Den lige stiplede linjer er tangenten 
+til ``spline'' kurven i forbindelsespunkterne.   
+
+
+\subsection{Cubic smoothing splines}
+\label{subsec:cubic}
+
+``Cubic smoothing spline'' (kubisk udglatning) benytter sig af en mere avanceret 
+form for udglatning af en mængde data. For at beskrive metoden, gives en kort 
+beskrivelse af metoderne, der ligger forud for denne. Den lineære metode 
+bygger på, at datasættet inddeles i intervaller, og derefter beregnes en 
+lineær regressionsmodel på hver segment af data. Disse modeller sættes 
+derefter sammen og danner en samlet kurve. Problemet med denne model er, at 
+den samlede kurve er meget skarp i forbindelsespunkterne. En forbedring af 
+dette sker ved at benytte en kvadratisk spline regression. I stedet for at 
+tilpasse ved hjælp af en lineær regressionsmodel, tilføjes der i den lineære 
+model kvadratiske led for alle de forklarende variable. Dette giver en model 
+med mere udglattede forbindelsespunkter. For at forbedre udglatningen i 
+forbindelsespunkterne yderligere, benyttes kubisk regressions spline. Fra den 
+kubiske regessionsspline, hvor der er lagt en restriktion på parameteren 
+$\beta_{11}, \cdots \beta_{1K}$ for at kontrollere for mængden af udglatning, 
+kan 
+der i stedet benyttes en anden metode til at påvirke mængden af udglatning, 
+f.eks. ved at benytte den anden afledte som et ubegrænset optimeringsproblem (
+as a penalty)  (Zuur, $2012$).  
+%
+\begin{equation}
+\left\|y-X\times \beta \right\|^2 + \lambda \times \sum f''
+\label{eq:opt. cubic}
+\end{equation}
+%
+Hvor $y$ er en vektor af $y_i$'s, $X$ er en vektor indeholdende alle de 
+forklarende variable, mens beta er parameterestimatorene og $\left\| \cdot 
+\right\|$ er den euklidiske norm(en funktion som angiver en bestemt længde 
+til hver vektor).  Udtryksmæssigt dækker $\left\|y-X\times \beta \right\|^2$ 
+over følgende $(y-X\times \beta)^t \times (y-X\times \beta)$, hvor $t$ betyder 
+transponeret. Ved at benytte Euclidisk norm fås udtrykket der indgår i 
+modellen, som dækker over summen af de kvadrerede residualer (Zuur, $2012$). 
+Parameteren $\lambda$ er udglatningsparameteren, som skal vælges på passende 
+vis, så der er den rigtige balance (trade-off) mellem de to dele af 
+kriteriet. Det første led, der bestemmer graden af tilpasningen, og det andet led, 
+som er graden af udglatning (Wood, $2003$).   
+
+Trade-offet mellem "bias" og "varians", samt størrelsen på intervallerne 
+datasættet indeles i, er vigtige faktorer i "cubic smoothing spline". Et 
+stort nabolag producerer en kurve med kraftig grad af udglatningen, samt 
+estimater med en lav varians, men højt bias, grundet meget udglatning og 
+derfor øget afstand mellem den faktiske kurve og udglatningskurven. Omvendt 
+for et lille interval, hvor kurven er mindre udglattet, variansen er stor 
+og bias lille. 
+
+For at få balanceret "varians" og "bias", benyttes udglatningsparameteren $
+\lambda$. $\lambda$ kan ses som et span(mængden af punkter i hvert interval). 
+Små værdier af $\lambda$ vil producerer mere svingende kurver, mens høje 
+værdier giver mere udglatte kurver. Når $\lambda$ går mod nul vil bias falde 
+og variansen stige. Går $\lambda$  mod uendelig vil bias stige, og 
+variansen falde. Udover at finde den korrekte værdi af parameteren $\lambda$, 
+påvirker antaller af intervaller, og således antallet af forbindelsespunkter 
+også udformningen af kurven. Mange forbindelses punkter giver en mere 
+fleksibel kurve, men for hvert interval beregnes der på et mindre grundlag, 
+hvilket påvirker kvaliteten af de beregnede værdier. At finde det rigtige 
+antal forbindelsespunkter(knots) kan gøres ved brug af avancerede beregningsmetoder. I dette 
+speciale og forsøgt med forskellige valg af forbindelsespunkter, for at kontrollerer robustheden i 
+de fundne resultater. 
+
+For at vende tilbage til udtrykket beskrevet i ligning ~\ref{eq:opt. cubic},
+beskriver den første del af optimeringskriteriet "goodness of fit", hvor godt 
+kurven er tilpasset de sande værdier. Det andet led beskriver, hvor godt $f(x)$
+ er udglattet. Des mindre værdi den anden afledte, $f''$, har des mere 
+udglattet er $f(x)$ (Zuur,$2012$).
+ %
+\begin{itemize}
+\item{En lav (absolut) værdi af $f''$ betyder, at f er en lige linje.}
+\item{En høj (absolut) værdi af $f''$ betyder, at f ikke er en lige linje.}
+\end{itemize}
+%
+For at opnå et mål for udglatningen langs hele $x$-aksen tages integralet af $
+f(x)$. En høj værdi af integralet indikerer, at $f(x)$ ikke er udglattet, 
+mens en lav værdi betyder, at $f(x)$ er udglattet langs $x$-aksen. Zuur($2012$)
+ viser dette således: 
+%
+\begin{figure}[H]
+	\centering
+	\caption{Udglattet vs. ikke udglattet}
+		\includegraphics[scale=0.6]{udgvsikud}
+		\label{fig:udglattetvsuudglattet}
+\end{figure}
+%
+På baggrund af det ovenstående kan optimeringskriteriet for "cubic smoothing 
+spline" beskrives således (Zuur, $2012$): 
+%
+\begin{equation}
+\left\|y-X \times \beta)\right\|^2 + \lambda \int f''(x)^2 dx
+\label{eq:mimopt}
+\end{equation}
+%
+Hvor $y$ er en vektor af $y_i$'s, $f$ er den korresponderende vektor af $f(x_i
+)$- værdier og $\left\| \cdot \right\|$ er den euklidiske norm(en funktion 
+som angiver en bestemt længde til hver vektor). Parameteren $\lambda$ er 
+udglatningsparameteren som skal vælges på passende vis, så der er den rigtige 
+balance (trade-off) mellem de to dele af kriteriet, det første der bestemmer 
+graden af tilpasningen og det andet led som er graden af udglatning (Wood, $
+2003$). 
+
+For at kunne minimere ovenstående optimeringskriterie antages for at 
+simplificerer beregningsprocessen, at $s(x) = \sum^{n+2}_{1}\gamma_j B_j(x)$ 
+hvor $\gamma_j$ er en koefficient og B er en kubisk b-spline basisfunktion. Samlet udtrykker funktionen en vægtede sum af spline funktioner. 
+For at løse ligning  ~\ref{eq:mimopt} ersattes $f$ med $s(x)$ i integrationen. 
+Ved at definerer matricen $B$ ved en $n \times (n+2)$ og matricen $\Omega$ 
+som indeholder information om krumningen af basis funktionen og er defineret ved $(n+2)\times(n+2)$ fås følgende: 
+%
+$$B_{ij} = B_j(x_i)$$
+%
+og
+%         
+$$\Omega_{ij} = \int B^{''}_i(x)B^{''}_j(x) dx$$
+%
+Med afsæt i ovenstående og at $\left\|y-X\times \beta \right\|^2$ kan 
+udtrykkes således $(y-X\times \beta)^t \times (y-X\times \beta)$ hvor $t$ 
+betyder transponeret, og at funktionen s, med basis udtrykket $s(x) = \sum_1^{
+n+2} \gamma_j B_j(x)$ differentieret giver $s''(x) = \gamma^T B(x)$ hvor $B_j(
+x) = B''_j(x)$. Ved at benytte at en scalar  er sin egen transponeret kan:
+%
+$$ \int{s''(x)^2 dx} = \int{\gamma^T B''_i(x) B''_j(x)\gamma dx} = \gamma^T 
+\Omega \gamma$$
+
+således kan ligning ~\ref{eq:mimopt} nu udtrykkes således:
+%
+$$(y-B\gamma)^T(y - B\gamma) + \lambda \gamma^T \Omega \gamma$$
+%
+Ved at løse problemet i forhold til $\gamma$ kan estimatet for $\hat{\gamma}$  
+findes ved at tage den afledte i forhold til $\gamma$ og derefter sætte det 
+lig nul. 
+%
+$$y^t y - 2 \gamma^T B^T y + B^T B \gamma^T \gamma + \lambda \gamma^T \Omega 
+\gamma$$
+%
+$$y^T y- 2 \gamma^T B^T y + \gamma^T (B^T B+ \lambda \Omega)\gamma$$
+%
+diff. m.h.t. $\gamma$
+%
+$$\gamma^T(B^T B+\lambda \Omega) - B^T y = 0$$
+%
+$$\hat{\gamma}(B^T B+\lambda \Omega) = B^T y$$
+%
+$$\hat{\gamma} = (B^T B + \lambda \Omega)^{-1} B^T y$$
+%
+
+Den sidste linje giver estimatat for en cubic smoothing splines. For at sammenligne med OLS estimatet som er $(x^{T}x)^{-1}x^{T}y$, er den orginale matrix af uafhængige variabel, x i beregning af cubic smoothing spline erstattet med basis funktionen i matricen, B. Derudover er der til $x^{T}x$, som er n gange covariance matricen af de uafhængige variable, i cubic smoothing splines beregnet covariansen til matricen indeholdende spline basis funktioner og tilføjet et ekstra led af covariance, hvilket er afhængigt af formen på funktionen $\Omega$ og graden af udglatning bestemt af $\lambda$.     
+
+
+\subsection{Additive Model}
+I dette afsnit præsenteres den additive model og proceduren "Backfitting 
+algoritm" som benyttes til estimationen af modellen.  
+
+Den additive model, eller udvidelsen af denne kaldet generalized additive 
+model, er i de seneste år blevet brugt i forbindelse med at forbedre 
+estimatorerne i analyser af boligmarkedet, bl.a. fordi den den tilføre et ekstra element af fleksibilitet i forhodl til den simple hedoniske model. 
+Den additive model benyttes bl.a. af Chernih og Sherris ($2004$) til 
+vurdering af luftforurning, støj, afstand til parker og veje samt andre beskrivende lokalområde variable. Det 
+er med afsæt i Chernih og Sherris's artikel fra $2004$ samt en artikel af Panduro og Veie ($2013$) som 
+beskriver alternativer til standard rumlige økonometrisk tilgange til den 
+hedoniske prisfastsættelsesmetode, at der i analysen er brugt en additiv 
+model.   
+
+Den additive model tillægger lokale regressioner til data med en lav 
+dimonsionel projektion, dvs. den additive model benytter en-dimensionelle 
+smoother til at danne en række af ikke parametriske regressions modeller. 
+Den additive model kan udtrykkes ved følgende form: 
+%
+\begin{equation}
+y= \beta_0 + \beta_i X_i + \sum^L_{i=1} f_i(x_i)  + \epsilon
+\label{eq:}
+\end{equation}
+%
+Her kan den linære model ses som et special tilfælde hvor $f(x_i) = \beta x_i$
+. 
+I udtrykket er $\beta_0$ en konstant og, $\beta_i$, $i=0, \cdots n$ er konstanter. $f$, er udglattet ved brug af "cubic 
+smoothing splines", $X$ er den parametriske del af regressionen, som 
+indeholder alle karakteristika ved boligen, med undtagelse af salgsåret, 
+afstanden til metrostationen og længde- og breddegrader og  $\epsilon$ er 
+fejlledet. 
+$f$ som er leddet der er blevet tilføjet i forhold til den hedonisek linære 
+model, giver mulighed for at inkludere arbitrære ikke linære funktioner, 
+hvilket gør den additive model mere fleksibel. I den linære model estimeres 
+$\beta$ for $x_i$ for at kunne beskrive hvordan en ændring i  $x_i$ påvirker 
+den afhængige variabel. I den additive model har funktionen $f_i$ den samme 
+funktion, dog udtrykkes disse ikke med et estimat kaldet $\beta$ som i den 
+linære model, men istedet som en funktion for den enkelte forklarende 
+variabel som kan udtrykkes grafisk.  
+
+Den additive model kan estimeres på flere forskellige måder, alt efter hvilke 
+smoothing splines der er valgt i opbygningen af modellen. I dette speciale er 
+valgt at benytte en semiparametrisk additiv model, hvor 
+udglatningsfunktionerne er defineret ved cubic spline regressioner. 
+Hvis alle x'erne i f-funktionerne var uafhængige, kunne man simpelt estimere 
+hver enkelt funktionel form ved brug af en ikke parametrisk regression af y 
+for hvert enkelt af x'erne. Men da x'erne er relateret til hinanden, 
+er det nødvendigt at fjerne effekten fra andre forklarende variable, som er 
+ukendte, før vi begynder estimationen. Dette gøres ved hjælp af "backfitting". 
+"Backfitting" er en måde til at finde hver enkelt kurve og kontroller for effekten fra andre variable.  
+
+For at starte med et eksempel tages udgangspunkt i en additiv model med to 
+forklarende variable. 
+%
+\begin{equation}
+y= \beta  + f_1(x_{i1}) + f_2(x_{i2}) +  \epsilon_i 
+\label{eq:}
+\end{equation}
+%
+Antages at vi kender funktionen for de partielle residualer for $f_2$, men 
+ikke funktionen for $f_1$ kan ovenstående ligning omskrives: 
+%
+\begin{equation}
+y -f_2(x_{i2}) = \beta + f_1(x_{i1}) +  \epsilon_i 
+\label{eq:}
+\end{equation}
+%
+På baggrund af ovenstående vil det være muligt at udglatte $f_2$'s partielle residualer $y -f_2(x_{i2})$ 
+mod $x_{i1}$ 
+og få et estimat af $\beta + f_1(x_{i1})$. Kender man en funktion, er det 
+muligt at finde de andre. Det er dog sjældent, at 
+man i den virkelige verden kender nogle funktioner, derfor benytter man sig af 
+backfitting algoritmen. 
+Algoritmen er bygget op således (Andersen, $2014$ noter): 
+%
+\begin{enumerate}
+  \item Som det først skrives udtrykket op, så de individuelle konstante led 
+elimineres
+  \item Derefter tages skønnede estimater for hver enkelt funktion i 
+regressionen af y over x'erne 
+	$$y_i - \bar{y} = b_1(x_{i1}- \bar{x_1}) +  b_2(x_{i2}-\bar{x_2}) + \epsilon
+_i $$	
+ 	$$y_1^* = b_1 X_{i1}^* + b_2 X_{i2}^* + \epsilon $$ 
+	Hvor $\bar{y}$, $\bar{x_1}$ og $\bar{x_2}$ er gennemsnitsværdien.
+	\item De skønnede etimater benyttes i step $(0)$ i en iterativ estimations 
+proces
+	$$\hat{f_1^{(0)}} = b_1 X_{i1}^* $$
+	$$\hat{f_2^{(0)}} = b_2 X_{i2}^*$$
+	\item Derefter findes først de partielle residualer for $x_1$ og derefter 
+for $x_2$. Når de partielle residualer tages til $x_1$ fjernes $y$ linear 
+relation til $x_2$ mens den bibeholdes mellem $y$ og $x_1$. 
+	Partielle residualer er en naturlig multiple regression analogt til at 
+plotte de obseveret x'er og y'er i en simpel linear regression (Breheny and 
+Burchett, $2013$). 
+	Ved at lade r være en vektor af residualer for en given model tilpasning, 
+vil de partielle residualer tilhørende variablen j være defineret således: 
+	$$r_j = y-X_{-j}\hat{\beta_{-j}}$$
+	$$r_j = r + x_j\hat{\beta_j}$$
+	hvor $-j$ referer til andelen af $X$ eller $\beta$, der er tilbage efter det 
+j'te element er fjernet. (Breheny and Burchett, $2013$). 
+	På bagrund af ovenstående kan de partielle residualer for $x_1$ skrives 
+således: 
+	$$r_1 = y_i^* - b_2 (x_{i2}^*)$$
+	$$r_1 = r + b_1(x_{i1}^*)$$
+	På samme måde beregnes de også for $x_2$
+	\item De partielle residualer "smoothes" og giver estimatet for f
+	$$\hat{f_k^{(1)}} = smooth [Y_{(k)i}^{(1)} ]$$ på $x_{ik}$
+	som kan skrives om til 
+	$$ \hat{f_k^{(1)}} = S_K \left\{Y_i - \left[f_1^{(1)}(x_{i1}) + f_2^{(1)}(x_{i2})\right]\right\}$$
+	Hvor $S$ er en $(n \times n)$ smoother  transformations matric for $X_i$ der 
+kun afhænger af konfigurationen af $X_{ij}$ for den i'th forklarende variabel. 
+	\end{enumerate}
+
+Mere generelt sker følgende: 
+\begin{enumerate}
+	\item Definer $f_j = \left\{f_j(x_{ij}, \cdots f_j(x_{nj})\right\}'$ for 
+alle j
+	\item initialiser $f_j = f_j(0) j=1, \cdots p$
+	\item kør over $j= 1, \cdots , p$
+	$$f_j = S_j\left(y-\sum_{k\neq j} {f_k}|x_j\right)$$
+	\item fortsæt indtil den individuelle funktion ikke ændres. 
+\end{enumerate}
+
+Proceduren til at finde estimaterne af funktionen ved at smoothe de partielle residualer vil forsætte indtil smoothingfunktionen er stabiliseret fra den ene iteration til den næste iteration. Derefter vil der være estimeret et estimat for $S_J(x_{ij}$ for hver $x_j$.  
+
+
+For at bevise at ovenstående gør sig gældende, benyttes et bevis brugt af 
+Hastie og Tibshirani ($1991$) og Wood ($2006$). Som viser en additiv model 
+ved brug af cubic smoothing splines. 
+ 
+Med udgangspunkt i 
+\begin{equation}
+\sum^n_{i=1} \left\{y_i-f(x_i)\right\}^2 + \lambda \int \left\{f''(t) \right\}
+^2 dt
+\label{eq:add_model}
+\end{equation}
+Parameteren $\lambda$ er udglatningsparameteren, som skal vælges på passende 
+vis, så der er den rigtige 
+balance (trade-off) mellem de to dele af kriteriet. Det første der bestemmer 
+graden af tilpasningen og det andet led, som er graden af udglatning (Wood, $
+2003$). 
+
+Med undgangspunkt i afsnittet om cubic splines kan udtrykket $\int \left\{f''(
+t) \right\}^2 dt$ omskrives til følgende:
+$$\int f_1''(x)^2 dx = \gamma^T \Omega_1 \gamma$$ og 
+$$\int f_2''(x)^2 dx = \gamma^T \Omega_2 \gamma$$ 
+hvor 
+$$\Omega_{ij} = \int B^{''}_i(x)B^{''}_j(x) dx$$
+
+således kan udtrykket i ~\ref{eq:add_model} skrives på følgende formel: 
+\begin{equation}
+	(y-f)^T(y-f) + \lambda \gamma^T \Omega \gamma
+\end{equation}
+
+I afsnittet om cubic splines er vist at ovenstående ligning har et minimum givet på følgende form: 
+\begin{equation}
+\hat{\gamma} = (I+ \lambda \Omega)^{-1} y
+\label{eq:}
+\end{equation}
+
+Med udgangspunkt i at det i afsnit ~\ref{subsec:cubic} er bevist at en cubic smoothing splines er den funktion der minimerer følgende funktion:
+%
+\begin{equation}
+\sum^{n}_{i=1}{\left\{y_i-f(x_i)\right\}^2} + \lambda \int \left\{f''(x)\right\}^2 dx
+ \label{eq:}
+\end{equation}  
+%
+Ved at udvide ovenstående ligning fås følgende kriterie. 
+\begin{equation}
+\sum^{n}_{i=1}{\left\{y_i - \sum^{P}_{j=1}{f_j(x_{ij})}\right\}^2} + \sum^{P}_{j=1} \lambda_{j} \int{\left\{f''_j(t)\right\}^2 dt}
+\label{eq:}
+\end{equation}
+%
+over alle p-vektorer af funktionen $(f_1, \cdots,f_p)$ der er differentiable af anden grad. 
+Med udgangspunkt i ovenstående kan det vises, at løsning til ovenstående problem er en p-vektor af cubic splines som skrives på følgende form: 
+\begin{equation}
+\left(y-\sum_{j=1} ^p {f_j}\right)^T\left(y-\sum_{j=1} ^p {f_j}\right) + \sum_
+{j=1}^p{\lambda \gamma_j^T \Omega_j \gamma_j }
+\label{eq:}
+\end{equation}      
+
+Differentiers ovenstående med hensyn til $f_j$ fås: 
+$$-2(y-\sum_k{f_k} ) +2 \lambda_j \Omega_j f_j = 0 $$
+det $f_j$ der løser ligningen ovenfor må opfylde: 
+\begin{equation}
+\hat{f_j} = (I+\lambda_j \Omega_j)^{-1} \left(y-\sum_{k\neq j} {\hat{f_k}}
+\right) , j=1, \cdots ,p
+\label{eq:est_add}
+\end{equation}
+
+$(I+\lambda_j \Omega_j)^{-1}$ er smoother matricen for en cubic smoothing 
+spline. se evt. afsnit om cubic smoothing splines. 
+Smoothing operatoren $S_j = (I+\lambda_j \Omega_j)^{-1}$ kan på matrix notation 
+skrives på følgende måde: 
+$$
+\begin{pmatrix}
+  I & S_{1} & \cdots & S_{1} \\
+  S_{2} & a_{2,2} & \cdots & S_{2} \\
+  \vdots  & \vdots  & \ddots & \vdots  \\
+  S_{p} & s_{p} & \cdots & I
+ \end{pmatrix} 
+=  \begin{pmatrix}
+  f_{1}  \\
+   f_{2}\\
+  \vdots   \\
+ f_{p}
+ \end{pmatrix} 
+=
+ \begin{pmatrix}
+  S_{1}y  \\
+   S_{2}y\\
+  \vdots   \\
+ S_{p}y
+ \end{pmatrix} 
+$$
+Hvilket svare til estimations matricen. 
+En måde at løse matricen på er ved brug af Gauss-seidel algoritmen, 
+hvilket er ækvivalent til at løse backfitting algoritmen 
+(Hastie and Trishiriani, $1990$). 
+
+Da en linære smoother kan skrives som $\hat{f_j} = S_j y $. Hvilket svare til en smoother matrix ganget med en vektor af response funktioner y. 
+
+I omvendt rækkefølge kan argumentes at ovenstående vil minimerer kriteriet af følgende form: 
+%
+\begin{equation}
+(y-\sum_j{f_j})^T (y-\sum{f_j}) + \sum{f'_j (S^-_j - I)f_j}
+\label{eq:}
+\end{equation}
+%
+og således konkludere, at det er en løsning til nogle former af ``penalized least squared'' problemer. 
+
+
+Af vigtige forklarende variable, $X$, må placering formodes at være helt 
+central for boligens pris, da ingen bolig vil have den samme placering. Som nævnt tidligere må det forventes at der er en stor korrelation 
+mellem boligens placering og dens karakterisktika, således at boliger i det 
+samme område, vil være forholdsvise ens. For at kunne skelne boligerne fra 
+hinanden kræver særligt den additive metode en stor grad af variation, da det er nødvendig at have boliger spredt ud over et større område, da klynger af boliger, med samme karakteristika, gør det svært at skelne effekterne fra hinanden.
+For at illustrerer ovenstående er følgende figur tegnet. 
+%
+\begin{figure}[H]
+	\centering
+	\caption{Illustration af vigtigheden af variation i datasættet}
+		\includegraphics[]{tegning}
+		%\label{fig:hedonisk}
+\end{figure}
+%
+
+Figuren viser boliger spredt i et område i nærheden af en metrostation. 
+Antages det at alle boligerne ligger $300$ meter fra en metrostation, vil 
+hver enkelt bolig udover at ligge i nærheden af en station, også være påvirket af andre lokale faktorer. Ses der kun på afstanden, vil der ikke fanges om boligen er placeret tæt på den store vej, eller det grønne område. Dette vil kunne fanges ved at inddrage den præcise placering af boligen, som i analysen er inkorporeret ved hjælp af længde- og breddegrad, hvilket dermed fanger noget af den rumlige afhængigehed, samt inddragelse af variable der beskriver boligens omkringliggende miljø. Grundet en 
+lille variation i længde-og breddegrads koordinaterne, understreger dette endnu engang nødvendigheden af en stor datamængde.
+
+
+Grafisk kan den hedoniske og additiv model illustreres i følgende diagram: 
+%
+\begin{figure}[H]
+	\centering
+	\caption{Grafisk beskrivelse af modellerne}
+		\includegraphics[scale=0.8]{fladplan}
+		\label{fig:hedonisk}
+\end{figure}
+%
+
+I begge modeller angiver krydset placeringen af en metrostation, og ringene 
+omkring krydset de forskellige meterintervaller. I den hedoniske model, 
+bliver effekten af metrostationen på boligprisen beskrevet ved et bestemt estimat, som er udtryk ved en procentvisændring på response variablen når den forklarende variabel ændres. Estimatet er beregnet for fem forskellige meterintervaller.  
+I den additive model, benyttes også den beregnede afstand til metrostationen, her er det dog ikke udtrykt ved et estimat af det enkelte interval, men i stedet en funktion, der beskriver hvordan den forklarende variabel påvirker response variabel, når alle andre forklarende variable holdes konstante. Funktionen er  grafisk beskrevet ved den blå funktion i diagrammet, som vil kunne have en vilkårlig form.      
+
+\subsection{Konklusion}
+Den hedoniske prisfastsættelsesmetode tager højde for de forskellige 
+karakteristika, der er forbundet med et gode, og er god til at analysere godet 
+bolig. Den hedoniske funktion estimerer hvor meget hvert enkelt karakteristika 
+påvirker prisen på bolig. Den implicitte pris på de enkelte 
+karakteristika vil afspejle, hvor meget køber er villig til at betale, for at 
+få en enhed mere af det specifikke karateristika. Ved hjælp af den hedoniske 
+prisfastsættelses metode er det således muligt at få belyst, hvad påvirkningen 
+af metrostationen er, og hvor meget boligprisen påvirkes som afstanden til en metrostation varierer. 
+Modellen, der beskriver sammenhængen mellem afstand og pris, giver et klart 
+billede af, at der må forventes, at eksistere en sammenhæng, hvor priseffekten 
+vil være aftagende efter afstand. Hvad modellen ikke fanger, er de 
+modsatrettede effekter, der eksisterer ved den lettere adgang til en 
+metrostation, så som et højere støjniveau. Denne negative effekt, kan være medvirkende årsag til at forholdet mellem pris og afstand ikke er aftagende. 
+Den additive model tilføjer en større grad af fleksibilitet til modellen. Ved at benytte en smoothingfunktion på afstandsparameteren, tilføjes den hedoniske model en ikke-parametrisk del, hvilket kan give mulighed for en bedre analyse af betydningen af at bo tæt på en metrostation.  
+
+
+

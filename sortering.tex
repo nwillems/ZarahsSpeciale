@@ -1,0 +1,210 @@
+\section{Sortering og konstruktion af nye variable}
+De næste afsnit vil indeholde en beskrivelse af proceduren for sortering af 
+datasættet, oversigt over kontruktion af nye variable, og beskrivende 
+statistik for relevante variable, der benyttes i analysen. 
+
+\subsection{Sortering af datasættet}
+Før datasættet benyttes til en nærmer analyse fjernes $3$ observationer, som 
+er fejlbehæftede, idet bolighandlen er sat til datoen $31-12-2013$. Da 
+datasættet er produceret før denne dato, og skulle indeholde data fra $2000$ 
+til april $2013$, fjernes de fejlbehæftede observationer, da der ikke er 
+nogen nærmer forklaring på denne dato, og således ingen mulighed for at finde 
+fejlen og eventuelt foretage en korrektion af datasættet. Datasættet her dermed 
+$50250$ observationer ialt.   
+
+ 
+
+\subsection{Konstruktion af nye variable}
+Tidligere studier har vist at afstanden til metrostationen har en effekt. I 
+studiet af Agostini og Palmucci( $2008$) som ser på en metrolinje i Santiago, 
+fanges der i deres analyse $50$ til $60$ procent af efterspørgslen inden for $500$
+ meter af en station, mens $80$ til $90$ procent fanges indenfor $1000$ 
+meter. Analyser af den danske metro har vist, at boligens værdi øges med $5-7$
+ procent indenfor de nærmeste par hundrede meter omkring metrostationen (
+Panduro et. al, 2013). Til belysning af metrostationens effekt, i forhold til 
+afstanden i meter, defineres fem meterintervalsparametre. Samtidig antages 
+det, at efter $1000$ meter vil effekten af metrostationen være forsvundet. 
+
+Intervallerne fastlægges til at dække $200$ meter hver, så der i hvert 
+intervaller er en rimelig mængde observationer at foretage regressionen over. 
+Intervallerne laves samlet for alle stationerne. 
+Derudover defineres en dummy, der fortæller om stationen ligger over $1000$ 
+meter fra stationen. 
+%
+\begin{table}[H]
+\centering
+\caption{Definition af afstandsvarible}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Variabel} & \textbf{Beskrivelse}  \\ \hline
+Dist\_0\_200 & Dummy=$1$ hvis mellem $0$ og $200$ meter til 
+nærmeste station, ellers $0$  \\ \hline
+Dist\_201\_400 ... & Dummy = $1$ hvis mellem $201$ og $400$ meter til 
+nærmeste station, ellers $0$  \\ \hline
+Dist\_401\_600 ... & Dummy = $1$ hvis mellem $401$ og $600$ meter til 
+nærmeste station, ellers $0$  \\ \hline
+Dist\_601\_800 ... & Dummy = $1$ hvis mellem $601$ og $800$ meter til 
+nærmeste station, ellers $0$  \\ \hline
+Dist\_801\_1000 ... & Dummy = $1$ hvis mellem $801$ og $1000$ meter til 
+nærmeste station, ellers $0$  \\ \hline
+Dist\_1000 & Dummy = $1$ hvis over 1000 meter til station, ellers $0$ \\ 
+\hline
+\end{tabular}
+\end{table}
+%
+Udover en dummy der beskriver afstanden, defineres også en områdedummy, der beskriver, hvilken station boligen er placeret tættest på, og en dummy, der beskriver, om stationen er en af de $9$ underjordiske stationer.  
+%
+\begin{table}[H]
+\centering
+\caption{Definition af placeringsvariable}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Variabel} & \textbf{Beskrivelse } \\ \hline
+Norreport & Dummy = $1$ hvis Nørreport station, ellers $0$ \\ \hline
+Forum ... & Dummy = $1$ hvis Forum station, ellers $0$  \\ \hline
+over\_jord & dummy =$1$ hvis stationen er over jorden, ellers $0$ \\ \hline
+\end{tabular}
+\end{table}
+%
+Da det skal verificeres, om boligen er solgt før eller efter at metrostationen er åbnet, defineres en dummy der antager værdien $1$, hvis boligen er solgt efter $2002$,$2003$ eller $2007$, afhængigt af stationen, ellers antages værdien $0$.  
+%
+\begin{table}[H]
+\centering
+\caption{Handel sket før eller efter metrostationens opførsel}
+\begin{tabular}{|l|l|}
+ \hline
+\textbf{Variabel} & \textbf{Beskrivelse } \\ \hline
+metro\_efter & Dummy = $1$ hvis handlet efter at stationen er åbnet, ellers 
+$0$ \\ \hline
+\end{tabular}
+\end{table}
+%
+Året, hvor stationen er åbnet, er medtaget, også selvom stationen er åbnet i løbet af året. Det begrundes med, at hvis man ved, at stationen snart åbner, vil prisen allerede der være påvirket ved en eventuelt handel. Generelt bør det bemærkes, at det antages, at priseffekten på boligen grundet metrostationen, først træder i kraft når metroen er bygget og åbnet. Ofte vil det være tilfældet, at noget af prisstigning allerede kan spores på annonceringstidspunktet. 
+
+Da annoncering af metrostationer skete før $2000$, og datasættet ikke indeholder priser fra før $2000$, er det ikke muligt at måle effekten på boligprisen før annonceringen, hvilket bl.a. er medvirkende årsag til ovenstående antagelse. Dog skal der i resultaterne tages højde for denne antagelse.
+
+Stationerne Vestamager og Ørestad udgår af datasættet og dermed modellen da deres datagrundlag ikke er stort nok. For Vestamager er der ingen handel før stationen er åbnet, og for Ørestad er der $1$. 
+ 
+Udover de ovenfor beskrevne dummyvariable defineres også en mængde af tidsdummyer, som er med til at korrigere for den generelle prisudvikling.  
+
+
+\subsection{Den genrelle prisudvikling på boligmaked}
+København oplevede i midten af $2000$-tallet, at de reale boligpriser steg med en voldsom hastighed. Samtidig vendte udviklingen sig brat og i slutning af $2008$ og begyndelsen af $2009$ havde mange boligejere lidt store kapitaltab. Det er således vigtigt, at data korrigeres for den generelle prisudvikling, inden der foretages en analyse. En af faktorerne, der altid vil være med til at ændre boligprisen, er inflation. Grundet denne faktor kan en boligpris fra en periode ikke i den rene pris sammenlignes med en boligpris fra en anden periode, der skal korrigeres for den generelle prisudvikling. 
+
+I grafen nedenfor vises den generelle prisudvikling på ejerlejligheder i København i perioden $2000$ $1.$ kvartal til $2013$ $2.$ kvartal. 
+%
+\begin{figure}[H]
+	\centering
+	\caption{Prisudviklingen på ejerlejligheder}
+		\includegraphics[scale=0.8]{graf_pris_udv}
+		\item{Kilde: Realkreditsrådets Boligmarkedesstatistik}
+\end{figure}
+%
+Ses der på udviklingen for de enkelte kommuner, der indgår i datasættet, ses at udviklingen generelt har været identisk.  Dog med en smule afvigelse for udviklingen i Hellerup. Dog bør det bemærkes, at de gennemsnitlige kvadratmeterpriser brugt til at vise udviklingen i kommunerne ikke er korrigeret for inflation eller ekstreme boligsalg, som kan være med til at påvirke den gennemsnitlige kvadratmeterpris i en given kommune. 
+
+Tidsdummyerne defineres på både årsbasis og kvartalsbasis. 
+ %
+\begin{table}[H]
+\caption{Definition af tidsdummier}
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Variabel} & \textbf{Beskrivelse  }\\ \hline
+D\_00 ... & Dummy = $1$ hvis $2000$, ellers $0$ \\ \hline
+D\_00Q1 ... & Dummy = $1$ hvis handel sket $1$ kvartal $2000$, ellers $0$  
+\\ \hline
+\end{tabular} 
+\end{table}
+%
+\section{Konstruktionsvariable}
+I dette afsnit beskrives konstruktionsvariablene, der allerede eksisterer i 
+datasættet, og som benyttes i regressionsanalysen.
+%
+\begin{table}[H]
+\caption{Konstruktionsvariable}
+\centering
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\textbf{Variable}         &  \textbf{N}    &	\textbf{Mean}    & \textbf{Std.}      &	\textbf{min }    &	\textbf{max}      \\ \hline
+price		         &       & 1696049	& 1131726	  & 102000	& 19337000 \\ \hline
+logprice	       &       & 14,180	  & 0,564	    & 11,53	  & 16,78    \\ \hline
+logarea		       &       & 4,292	  & 0,360	    & 3,434	  & 5,994    \\ \hline
+area		         &       & 78,390	  & 33,055	  & 31	    & 401      \\ \hline
+age		           &       & 1933	    & 37,276	  & 1850	  & 2011     \\ \hline
+age\_2000	       & 5475  & 0,109	  & 0,312	    & 0	      & 1        \\ \hline
+age\_1980\_1999  &	782	 & 0,016	  & 0,124	    & 0	      & 1        \\ \hline
+age\_1948\_1979  & 5881	 & 0,117	  & 0,321	    & 0	      & 1         \\ \hline
+age\_1910\_1947  & 23012 & 0,458	  & 0,498	    & 0	      & 1         \\ \hline
+age\_1875\_1909  & 13139 & 0,262	  & 0,439	    & 0	      & 1         \\ \hline
+age\_1850\_1874  & 1961	 & 0,039    & 0,194	    & 0	      & 1         \\ \hline
+Barhrooms		     &       & 1,007	  & 0,212	    & 0	      & 3         \\ \hline
+Rooms		         &       & 2,636	    & 1,037	    & 1	      & 13        \\ \hline
+Toilets		       &       & 1,048	  & 0,222	    & 1	      & 4        \\ \hline
+floor		         &       & 1,987	  & 1,659	    & -1	    & 11       \\ \hline
+B\_units\_nr	   &       & 50,530	  & 51,556	  & 1	      & 267     \\ \hline
+brick            &       & 0,9015   & 0,2980    & 0       & 1        \\  \hline
+roof\_tile       &       & 0,4287   & 0,4949    & 0       & 1        \\ \hline
+roof\_cement     &       & 0,0133   & 0,1145    & 0       & 1         \\ \hline
+roof\_board      &       & 0,1466   & 0,3537    & 0       & 1         \\ \hline
+roof\_fiber      &       & 0,2576   & 0,4373    & 0       & 1          \\
+\hline
+\end{tabular} 
+\label{table: konstruktion}
+\end{table}
+%
+I tabel ~\ref{table: konstruktion} kan ses, at særlig arealet og prisen varierer 
+meget for de forskellige boliger. Derudover er der stor forskel på om boligen er 
+placeret i en bygning sammen med mange andre boligenheder.   
+
+\section{Rumlige variable}
+De rumlige variable fortælle her noget om afstandene til forskellige 
+faciliteter i nærområdet. Her ses nærmer på afstanden til park, nærmeste 
+metrostation og adgang til daginstitutioner. 
+%
+\begin{table}[H]
+\caption{Rumlige variable}
+\centering
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Variable}         &	\textbf{Mean}    & \textbf{Std.}      &	\textbf{min}     &	\textbf{max}       \\ \hline
+Daycare          & 192,262	& 120,419	  & 0,5142	& 868,9293   \\ \hline
+park\_dist	     & 384,269	& 292,034	  & 6,663	  & 1819,517   \\ \hline
+Near\_dist	     & 1619,050	& 1093,954	& 42,17	  & 5332,36   \\
+  \hline
+\end{tabular}
+\label{table: rumlige}
+\end{table}
+%
+For variablen NEAR\_DIST, som er afstanden til nærmeste metrostationen, 
+har en stor del af observationerne, mere end $1000$ meter til nærmeste 
+metrostation. Grundet mange observationer, der har længere end $1000$ meter 
+til nærmeste metrostation, vil der være få observationer, der hvor 
+metrostationen gerne skulle have den største effekt, nemlig når der er 
+mindre end $1000$ meter til stationen, samlet er der i datasættet $18863$ observationer på $1000$ eller under.
+
+ 
+\section{Nabolagsvariable}
+Nabolagsvariabelene fortæller noget om de mennesker, der bor i området. Dette 
+vil oftes kunne afspejles i boligernes kvalitet, da velhavende borgere 
+efterspørger en anden type boliger, end den mindrebemidlede. Her ses nærmer på 
+gennemsnitlig husstandsindkomst og skolernes afgangselvers  afsluttende 
+karaktergennemsnit. 
+%
+\begin{table}[H]
+\caption{Nabolagsvariable}
+\centering
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Variable}         &	\textbf{Mean}    & \textbf{Std.}      &	\textbf{min}     &	\textbf{max }      \\ \hline
+Sch\_grade		     &  5,352	 & 1,421419   & 0	      & 7,8        \\ \hline
+Gns\_personi		   & 367060		& 147704,5  & 134137	  & 1482552   \\ \hline
+\end{tabular}
+\label{table: nabolag}
+\end{table}
+%
+Hvad der bemærkes her er, at der for nogle skoler eksisterer en værdi på nul. 
+Da ingen skoler i Københavns kommune har et karaktergennemsnit på nul, tages 
+der i analysen højde for, at de observationer, der indeholdt et nul, ikke påvirker 
+parameterestimatet. 
+
+

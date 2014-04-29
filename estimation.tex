@@ -1,0 +1,912 @@
+\section{Estimationsresultater}
+Ved brug af de opstillede modeller i afsnit ~\ref{sec:Modelmetode} ønskes
+at belyse effekten på boligprisen alt efter afstanden til en metrostation. Ved 
+hjælpe 
+af de defineret modeller, forsøgs at belyse hypotesen om, at prieffekten ikke 
+nødvendigvis er stødt aftagende med afstanden til en metrostation.  
+
+\subsection{Resultater - Grundmodel}
+Den første model, der estimeres, er model $1$. Resultatet af model $1$ findes
+i bilag ~\ref{sec:Bilag2}. Modellen er estimeret på baggrund af $50250$ 
+observationer.
+Størstedelen af estimaterne har 
+det forventede fortegn og er signifikante(dog skal der her bemærkes, at der 
+senere 
+findes hetroskedasticitet, og der kan således ikke stoles på testværdierne). 
+Der er $2$ variable, der ikke 
+passer med det forventede resultat. Det er parameteren for antal badeværelser 
+og antal toiletter, der har et negativt fortegn, hvor det ellers kunne 
+forventes, at disse havde en positiv effekt på prisen. I forhold til 
+stationsdummyerne tegner der sig en tendens til, at dem, der ligger over 
+jorden, har et negativt fortegn, mens de underjordiske har positivt, dog 
+afviger Lergravsparken og Frederiksberg metrostation. Det kan eventuelt 
+skyldes,
+at disse to stationer ligger i udkanten af de underjordiske stationer, og 
+forskellen på de overjordiske og underjordiske eventuelt, hænger sammen med om 
+det er boliger der ligger tæt på centrum versus boliger, der ligger langt fra 
+centrum.Amager strand har et 
+positivt estimat, dette er dog ikke signifikant, og der ses i denne 
+sammenhæng bort
+fra det. 
+
+Før de videre regression gennemføres undersøges om modellen lider af 
+hetroskedasticitet.I plottet nedenfor er de standardiserede residualer plottet 
+mod de forudsete estimater.  
+Plottet viser en tendens mod hetroskedasticitet, da spredningen på 
+residualerne er faldende med stigende forudsete estimatorer.  
+Hetroskedastilitet betyder, at standardafvigelserne er hetroskedastiske, 
+hvilket 
+skaber systematisk varians i standardafvigelserne, hvilket betyder at 
+standardafvigelserne ikke længere
+kan bruges til at skabe t-statistik og således kan der ikke vurderes på 
+estimaternes signifikantsniveau. 
+%
+\begin{figure}[H]
+	\centering
+	\caption{Hetroskedasticitet}
+		\includegraphics[scale=0.6]{MLR}
+		\end{figure}
+%
+Udover den grafiske test af hetroskedasticitet, foretages en Breusch-Pagan 
+test.  Nulhypotesen i Breusch-Pagan tests er, at datasættet er homoskedastisk. 
+%
+$$BP = 1141.009, df = 56, p-value < 2.2e-16$$
+%
+Grundet den lave p-værdi afvises nulhypotesen om homoskedasticitet, og det må 
+konkluderes, at modellen lider af hetroskedasticitet. 
+Da modellen lider af hetroskedasticitet, vil der i de videre analyser 
+benyttes robust 
+standardafvigelser som tager højde for hetroskedasticiteten, således at 
+siginificantsniveauet og standardafvigelserne
+kan benyttes i analysen. 
+De estimereede parameterværdier er stadigvæk middelrette og konsistente under 
+antagelse af, at MLR $1- 4$ (Se bilag ~\ref{sec:MLR}) er opfyldt (Wooldridge, $
+2009$).
+Ved hjælp af grafiske test vises, at estimatorerne er pålidelige og kan 
+benyttes 
+i analysen. 
+
+Da vi er bekendt med, at der ekesisterer hetroskedasticitet, testes bl.a. den 
+funktionelle form. 
+Dette gøres ved hjælp af en RESET test. Det er i denne sammenhæng vigtig at 
+nævne,
+at RESET testen er en meget simpel test, der ikke har nogen evner til at 
+finde udeladte variable.  
+Samtidig har testen i tilfælde, hvor den funktionelle form er specificeret 
+korrekt, ingen muligheder 
+for at fortælle om modellen lider af hetroskedasticitet (Wooldridge, 2009, side 
+303-305). 
+Nulhypotesen for en RESET-test er at modellen er specificeret med den korrekte 
+funktionelle form. Forkastes nulhypotesen, må det antages, at modellen ikke 
+har den korrekte funktionelle form. 
+
+Testresultatet er som følge: 
+%
+$$ RESET = 48,7649, df1 = 112, df2 = 47773, p-værdi < 2,2e-16 $$ 
+%
+Grundet den lave p-værdi forkastes nulhypotesen og modellen må forventes at 
+kunne specificeres bedre. 
+I denne omgang noteres det blot, og formen forbliver den sammme. 
+
+Kollinearitet og særligt multikollinearitet er en faktor, der kan skabe store 
+problemer for estimationen.  Er en eller flere af de forklarende variable 
+korreleret, er det med til at skabe upålidelige regressionskoefficienter 
+samtidig med, at det også kan skabe inflation i standardfejlene og påvirke p-
+værdierne. Det er særligt et problem, hvis afstandsvariable er korreleret med 
+andre forklarende variable.  For at teste for multikollinearitet benyttes 
+metoden VIF(
+variation inflation factor), som måler hvor meget variansen er inflateret, 
+dvs. et mål for, hvor meget en variabel bidrager til standardfejlene i 
+regressionen. 
+
+VIF for den k'te forudsete estimat er defineret af følgende udtryk: 
+%
+\begin{equation}
+VIF_k = \frac{1}{1-R_k^2}
+\label{eq:VIF}
+\end{equation}
+%
+Hvor $R_k^2$ er $R^2$-værdien opnået ved at regressere det k'te forudsete 
+estimat på de resterende forudsete estimatorer (Derek Young, $2014$)
+
+Resultatet af VIF analysen er præsenteret i  tabel ~\ref{table:VIF}. En VIF-
+værdi på $1$ 
+betyder, at der ikke er nogen korrelation mellem den k'te forudsete værdi og 
+de resterende forklarende estimater og variansen ikke er påvirket på nogen 
+måde. En VIF på over fire bør undersøges nærmere, mens en VIF på $10$ er tegn 
+på meget kraftig multikollinearitet.
+%
+\begin{table}[H]
+	\centering
+	\caption{VIF- analyse}
+	\begin{tabular}{|l|l|l|l|}
+	\hline
+\textbf{Variabel 	}          &\textbf{VIF}    &	\textbf{Variabel}	          &
+  \textbf{VIF}    \\ \hline
+area	              &$4,65$	&Norreport\_L      	  &$6,29$ \\ \hline
+age\_1980\_1999     &$1,49$	&Kongens\_nytorv\_L 	&$2,49$ \\ \hline
+age\_1948\_1979    	&$4,04$	&Christianshavn\_L 	  &$1,86$ \\ \hline
+age\_1910\_1948    	&$8,6$	&Lergravsparken\_L    &$2,44$ \\ \hline
+age\_1875\_1910     &$6,94$	&Islandsbrygge\_L    	&$2,77$ \\ \hline
+age\_1850\_1       	&$2,6$	&DR\_byen\_L          &$1,41$ \\ \hline
+bathrooms        	  &$1,38$	&Bella\_center\_L   	&$1,44$ \\ \hline
+rooms            	  &$3,47$	&Forum\_L             &$5,24$ \\ \hline
+floor            	  &$1,14$	&Flintholm\_L      	  &$2,18$ \\ \hline
+B\_units\_nr       	&$1,4$  &Vanlose\_L           &$3,59$ \\ \hline
+toilets          	  &$1,63$	&oresund\_L        	  &$1,56$ \\ \hline
+brick	              &$1,37$	&Femoren\_L        	  &$1,61$ \\ \hline
+roof\_tile	        &$1,89$	&Amager\_Strand\_L  	&$1,49$ \\ \hline
+roof\_cement	      &$1,08$	&Fasanvej\_L       	  &$2,49$ \\ \hline
+roof\_board	        &$1,35$	&Frederiksberg\_L  	  &$2,75$ \\ \hline
+daycare          	  &$1,3$	&Sundby\_L            &$1,1$ \\ \hline
+sch\_grade        	&$2,02$	&Lindevangen\_L    	  &$2,73$ \\ \hline
+GnsPersoni       	  &$2,11$	&Årsdummy	            &$<2$ \\ \hline
+park\_dist        	&$1,32$	&	                    & \\ \hline
+Dist\_0\_200       	&$1,48$	&		                  & \\ \hline
+Dist\_201\_400     	&$1,95$	&	                    &	\\ \hline
+Dist\_401\_600     	&$1,53$	&	                    &	\\ \hline
+Dist\_601\_800     	&$1,34$	&	                    &	\\ \hline
+Dist\_801\_1000    	&$1,36$	&	                    &	\\ 
+\hline
+\end{tabular}
+\label{table:VIF}
+\end{table}
+%
+I tabellen ses, at der er seks variable, der har en VIF, der er større 
+end fire, de fem er dog ikke forklarende variable, der er centrale for 
+undersøgelsen, den sidste variabel "area", som har en central betydning i 
+analysen ligger på lige over fire, så derfor accepteres det. 
+Da afstandsvariablene, som er dem, der særligt studeres i denne 
+analyse, alle har en VIF-værdi på mindre end $2$ antages, at parameterne ikke 
+er påvirket af multikollinaritet i en sådan grad, at der beregnes misvisende 
+estimatorer. 
+Som det sidste undersøges om fejlledene følger en normalfordeling 
+med middelværdi på nul.
+%
+\begin{figure}[H]
+	\centering
+	\caption{Q-Q graf}
+		\includegraphics[scale=0.8]{qqplot}
+		%\label{fig:linear}
+\end{figure}
+%
+\begin{figure}[H]
+\centering
+\caption{Histogram over residualerne}
+		\includegraphics[scale =0.2]{hist_logprice}
+%\label{fig:areal}
+\end{figure}
+% 
+Der eksisterer et problem med de lange haler i q-q plottet, som understøtter, 
+at 
+det ikke er normalfordelte fejlled. Dog ser histogrammet  
+bedre ud, og det ses, at der er meget få observationer, der er skyld i de lange 
+haler.   
+
+På baggrund af ovenstående analyse af data vurderes, at der godt kan 
+fortsættes med OLS, så længe der ikke beregnes test på baggrund af 
+resultaterne, medmindre der regnes med robust standardafvigelser der 
+korrigeret for 
+hetroskedasticiteten. I den videre analyse er der korrigeres for 
+hetroskedasticiteten.
+Grundet den stærke rumlige autokorrelation, der eksisterer i 
+de hedoniske modeller, tilføjes senere i en additiv model et ikke-parametrisk 
+led på afstandsparameteren for at se om dette kan forbedre OLS-regression. Og 
+samtidig estimeres også en additiv model, hvor længde- og breddegrad indrages 
+ved hjælp af et ikke-parametriske led.   
+
+I tabel ~\ref{tab:modelto} vises resultaterne af model $2$, som er en 
+difference-in-difference for før og efter metrostations åbning. I tabel ~\ref{
+tab:modeltre} vises
+ model $3$, der er en difference-in-difference for over eller under $1000$ 
+meter 
+til en metrostation.  Model $1$ til $3$ har alle 
+responsevariablene, år $2000$, metrostationen Amagerbro, roof\_fiber og 
+roof\_flat samt over $1000$ meter til nærmeste metrostation
+
+Den første estimation var baseret på $50250$ observationer. I de videre 
+modeller 
+er datasættet reduceret til $49747$ observationer. Dette skyldes, at 
+stationerne 
+Vestamager og Ørestad udgår af datasættet grundet mangel på 
+observationer, når der inddeles på salg før og efter metrostationener er åbnet 
+se bilag ~\ref{sec:dist}. 
+
+%
+	\begin{table}[H]
+  \centering
+  \caption{Estimation af model $2$ }
+    \begin{tabular}{|l|l|l|l|l|l|}
+		\hline
+    Variable & Beskrivelse & Estimat & Std. afvigelse  & Pr(>|t|) & Sig. \\ 
+\hline
+    (Intercept)     &       & 12,8750 & 0,0231  & < 2.2e-16 & *** \\ \hline
+    \multicolumn{6}{l}{\textbf{Kontruktionsvariable}} \\ \hline
+    area            & Areal & 0,0064 & 0,0001  & < 2.2e-16 & *** \\ \hline
+    age\_1980\_1999 & Opført mellem 1980-1999 & -0,0569 & 0,0114  & 0,0000 & 
+*** \\ \hline
+    age\_1948\_1979 & Opført mellem 1948 - 1979 & -0,2055 & 0,0086 & < 2.2e-16
+ & *** \\ \hline
+    age\_1910\_1948 & Opført mellem 1911-1947 & -0,1431 & 0,0082  & < 2.2e-16 
+& *** \\ \hline
+    age\_1875\_1910 & Opført mellem 1875-1910 & -0,1180 & 0,0085  & < 2.2e-16 
+& *** \\ \hline
+    age\_1850\_1    & Opført mellem 1850-1874 & -0,0684 & 0,0121  & 0,0000 & 
+*** \\ \hline
+    bathrooms       & Antal badeværelser & -0,0302 & 0,0104  & 0,0036 & *** \\
+ \hline
+    rooms           & Antal værelser & 0,0612 & 0,0030  & < 2.2e-16 & *** \\ 
+\hline
+    floor           & Etage & 0,0119 & 0,0009  & < 2.2e-16 & *** \\ \hline
+    B\_units\_nr    & Antal boligenheder i ejendommen & -0,0003 & 0,0000  & < 
+2.2e-16 & *** \\ \hline
+    toilets         & Antal toiletter & -0,0417 & 0,0111  & 0,0002 & *** \\ 
+\hline
+    brick           & Bygget af mursten & 0,0008 & 0,0060  & 0,9004 &  \\ 
+\hline
+    roof\_tile      & Tegltag & 0,0228 & 0,0036  & 0,0000 & *** \\ \hline
+    roof\_cement    & Cementtag & 0,0050 & 0,0116  & 0,6645 &  \\ \hline
+    roof\_board     & Tag med hældning & 0,0114 & 0,0041  & 0,0057 & *** \\ 
+\hline
+    \multicolumn{6}{l}{\textbf{Rumlige- og nabolagsvariable}} \\ \hline
+		daycare         & Meter til børnehave/vuggestue & 0,0001 & 0,0000  & 0,
+0000 & *** \\ \hline
+    sch\_grade      & AfgangsGns. For nærmeste skole   & 0,0134 & 0,0025  & 0,
+0000 & *** \\ \hline
+    GnsPersoni      & Gns. indkomst i lokalområdet & 0,0000 & 0,0000  & < 2.2e
+-16 & *** \\ \hline
+    park\_dist      & Afstand til nærmeste park & 0,0000 & 0,0000  & 0,8067 &
+  \\ \hline
+    metro\_efter    & metro\_efter & -0,0205 & 0,0075  & 0,0063 & *** \\ \hline
+    \multicolumn{6}{l}{\textbf{Afstandsvariable - Afstand til nærmeste metro}}
+ \\ \hline
+    Dist\_0\_200 & mellem 0-200 meter & 0,0249 & 0,0119  & 0,0368 & ** \\ 
+\hline
+    Dist\_201\_400 & mellem 201-400 meter & 0,0655 & 0,0084  & 0,0000 & *** \\
+ \hline
+    Dist\_401\_600 & mellem 401-600 meter & 0,0111 & 0,0103  & 0,2792 &  \\ 
+\hline
+    Dist\_601\_800 & mellem 601-800 meter & 0,0036 & 0,0083  & 0,6620 &  \\ 
+\hline
+    Dist\_801\_1000 & mellem 801-1000 meter & 0,0092 & 0,0087  & 0,2896 &  \\ 
+\hline
+     \end{tabular}
+  \label{tab:modelto}
+\end{table}
+%
+\begin{table}[H]
+  \centering
+  \caption{Estimation af model $2$ - forsat}
+    \begin{tabular}{|l|l|l|l|l|l|}
+		\hline
+    Variable & Beskrivelse & Estimat & std.afvigelse  & Pr(>|t|) & Sig. \\ 
+\hline
+\multicolumn{6}{l}{\textbf{Stationsdummier - Nærmeste station}} \\ \hline
+    Norreport\_L & Nørreport  & 0,1953 & 0,0079  & < 2.2e-16 & *** \\ \hline
+    Kongens\_nytorv\_L & Kongens\_nytorv\_L & 0,2496 & 0,0121  & < 2.2e-16 & 
+*** \\ \hline
+    Christianshavn\_L & Christianshavn\_L & 0,2237 & 0,0097  & < 2.2e-16 & 
+*** \\ \hline
+    Lergravsparken\_L & Lergravsparken\_L & -0,0224 & 0,0072  & 0,0019 & *** 
+\\ \hline
+    Islandsbrygge\_L & Islandsbrygge\_L & 0,1808 & 0,0104  & < 2.2e-16 & *** 
+\\ \hline
+    DR\_byen\_L & DR\_byen\_L & -0,0273 & 0,0123 & -2,2231  & ** \\ \hline
+    Bella\_center\_L & Bella\_center\_L & -0,0752 & 0,0122  & 0,0000 & *** \\ 
+\hline
+    Forum\_L & Forum\_L & 0,1150 & 0,0083  & < 2.2e-16 & *** \\ \hline
+    Flintholm\_L & Flintholm\_L & -0,0419 & 0,0106  & 0,0001 & *** \\ \hline
+    Vanlose\_L & Vanlose\_L & -0,0317 & 0,0078  & 0,0001 & *** \\ \hline
+    oresund\_L & oresund\_L & 0,0950 & 0,0138  & 0,0000 & *** \\ \hline
+    Femoren\_L & Femoren\_L & -0,0515 & 0,0112  & 0,0000 & *** \\ \hline
+    Amager\_Strand\_L & Amager\_Strand\_L & 0,0057 & 0,0128  & 0,6565 &  \\ 
+\hline
+    Fasanvej\_L & Fasanvej\_L & 0,0542 & 0,0091  & 0,0000 & *** \\ \hline
+    Frederiksberg\_L & Frederiksberg\_L & -0,0023 & 0,0085  & 0,7848 &  \\ 
+\hline
+    Sundby\_L & Sundby\_L & -0,0128 & 0,0273  & 0,6402 &  \\ \hline
+    Lindevangen\_L & Lindevangen\_L & -0,0062 & 0,0089  & 0,4833 &  \\ \hline
+    \multicolumn{6}{l}{\textbf{Interaktions mellem metrost. og  antal meter}} 
+\\ \hline
+    Dist\_0\_200:metro\_efter &  & 0,0249 & 0,0143  & 0,0823 & * \\ \hline
+    Dist\_201\_400:metro\_efter &  & -0,0026 & 0,0089 & 0,7655 &  \\ \hline
+    Dist\_401\_600:metro\_efter &  & 0,0451 & 0,0115  & 0,0001 & *** \\ \hline
+    Dist\_601\_800:metro\_efter &  & 0,0198 & 0,0098  & 0,0437 & ** \\ \hline
+    Dist\_801\_1000:metro\_efter &  & 0,0170 & 0,0105  & 0,1068 &  \\ \hline
+    Årsdummyer &  &             &       & < 2.2e-16 & *** \\ \hline
+		$R^2$        & 0,74731 & & & &  \\
+		\hline
+			\end{tabular}
+  \label{tab:addlabel}
+	\item{Note: Signifikantsniveauer:  0,01***, 0,05** og 0,1*}
+\end{table}
+%
+
+
+\subsection{Resultater - Før og efter metrostations åbning}
+Model $2$ belyser effekten af et økonomisk afkast på boligen ved 
+metrostationernes åbning. Modellen beregner den procentvise priseffekt på 
+boligprisen, efter at metrostationen er blevet opført. Ved måling af 
+priseffekten er det dog vigtigt, at der tages højde for hvornår denne effekt 
+kan måles. Flere studier bl.a. Agostini and Palmussi ($2008$) peger på, at 
+effekten indtræder i flere omgange. Ved annonceringen af byggeriet, når 
+placeringen af metrostationerne annonceres, omkring den annoncerede åbning, og 
+når stationerne er åbnet.  Da datasættet, der analyseres, ikke indeholder 
+bolighandler omkring annonceringstidspunktet, ses her kun nærmer på tiden 
+omkring selve åbningen, dvs. om boligen er solgt 
+før eller efter det år hvor stationen er åbnet. 
+
+I modellen inkluderes en variabel, der tager værdien $1$, hvis boligen er 
+solgt efter, at stationen er åbnet, ellers tages værdien $0$. Her skal det 
+bemærkes, at en bolig sagtens kan være solgt mere end en gang efter at 
+stationen er bygget, alternativt også før. Samtidig vil der også indgå 
+boliger, der kun er solgt enten før eller efter åbningsåret. Det optimale 
+havde været, at se på de samme boliger, der er solgt før og efter, dette var 
+ikke muligt, med det eksisterende datasæts størrelse. Det skal bemærkes, at 
+det her antages, at boligerne ikke forandrer sig og heller deres omgivelser. Dette er en grov antagelse, som kan være med til at skabe skævhed 
+i parameterestimaterne, dog opereres med en forholdsvis kort tidsperiode, 
+hvilket kan mindske ændringer i området. Angående boligerne vil den 
+sammensatte 
+mængde, der regresseres på, være forskellig. Dog er der ikke sket større 
+forandringer
+i boligsælger og købers boligbehov, som ville kunne betyde, at der blev 
+handlet vidt 
+forskellige boliger i de to perioder, derfor antages, at den samlede mængde 
+af boliger
+godt kan accepteres at være ens i de to perioder.   
+Variablene i model $2$ har samme fortegn som i model $1$. Signifikansniveauet 
+er forringet i model $2$ i forhold til model $1$. Variablen "metro\_efter", der 
+bestemmer om boligen er solgt før eller efter åbningen af metrostationen, har 
+et negativt fortegn, hvor det måtte forventes, at dette var positivt, da den 
+forventede effekt af metrostationen var positiv. Dette er tegn på, at andre 
+faktorer kan have været med til at påvirke prisen. F.eks. kan nogle af de 
+boliger, der ligger i nærheden af en station, også ligge i nærheden af et bane 
+legeme, hvilket kan sænke prisen, grundet en ulempe ved metro der kommer kørerende forbi 
+i baghaven.  
+
+Kun to af afstandsintervallerne er signifikante, og der tegnes ikke et klart 
+mønster, af hvad priseffekten på boligerne har været afhængigt af afstanden 
+til metrostationen. 
+%
+\begin{table}[H]
+\centering
+\caption{Priseffekt fordelt på meterintervaller model $2$}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+  $0-200$ &$201-400$  & $401-600$  & $601-800$  & $801-1000$  \\ \hline
+	$2,5$* \%      & $-0,2$ \%      & $4,5$\% ***       & $2,0$ \% **      & $1,
+7$ \%  \\ 
+	\hline
+	%\label{table:met}
+	
+\end{tabular}
+\item{Note: Signifikantsniveauer:  0,01***, 0,05** og 0,1*}
+\end{table}
+%
+Af de resterende forklarende variable ses, at særligt variabel for boliger 
+opført mellem $1948$ og $1979$ har en meget negativ effekt på prisen. Dette 
+kan hænge sammen med det i dag mindre attraktive $60$'er og $70$'er byggeri, 
+som derfor også har en lavere pris. Samtidig påvirker særligt antal værelser 
+prisen positivt, mens antal toiletter og badeværelser har en stærk negativ 
+påvirkning på prisen. De rumlige- og nabolagsvariablene har overordnet set ikke 
+den store betydning, kun skolegennemsnittet påvirker i en mindre grad 
+boligprisen.  
+
+
+\subsection{Resultater - Over eller under $1000$ til stationen}
+
+% 
+\begin{table}[H]
+  \centering
+  \caption{Estimation af Model $3$. Difference-in- difference ift. over/under 
+$1000$ meter til st.}
+    \begin{tabular}{|l|l|l|l|l|l|}
+		\hline
+      Variable       & Beskrivelse    & Estimat & Std.afvigelse & Pr(>|t|) &  
+\\ \hline
+       (Intercept) &       & 12,9120 & 0,0227 & < 2.2e-16 & *** \\ \hline
+    \multicolumn{6}{c}{\textbf{Konstruktionsvariable}} \\ \hline
+    area  &  Areal     & 0,0064 & 0,0001 & < 2.2e-16 & *** \\ \hline
+    age\_1980\_1999 & Opført mellem 1980-1999    & -0,0605 & 0,0114 & 0,0000 &
+ *** \\ \hline
+    age\_1948\_1979 & Opført mellem 1948-1979      & -0,2088 & 0,0086 & < 2.2e
+-16 & *** \\ \hline
+    age\_1910\_1948 & Opført mellem 1910-1947     & -0,1468 & 0,0082 & < 2.2e-
+16 & *** \\ \hline
+    age\_1875\_1910 &  Opført mellem 1875-1909      & -0,1237 & 0,0084 & < 2.2
+e-16 & *** \\ \hline
+    age\_1850\_1 &   Opført mellem 1850-1874    & -0,0662 & 0,0121 & 0,0000 & 
+*** \\ \hline
+    bathrooms &  Antal badeværelser     & -0,0304 & 0,0104 & 0,0035 & ** \\ 
+\hline
+    rooms & Antal værelser        & 0,0611 & 0,0030 & < 2.2e-16 & *** \\ \hline
+    floor &  Etage     & 0,0119 & 0,0009 & < 2.2e-16 & *** \\ \hline
+    B\_units\_nr & Antal boligenheder i ejendommen       & -0,0003 & 0,0000 & 
+< 2.2e-16 & *** \\ \hline
+    toilets & Antal toiletter      & -0,0396 & 0,0111 & 0,0003 & *** \\ \hline
+    brick &  bygget af mursten     & 0,0020 & 0,0060 & 0,7412 &  \\ \hline
+    roof\_tile &   Tegltag    & 0,0216 & 0,0036 & 0,0000 & *** \\ \hline
+    roof\_cement & Cementtag      & 0,0042 & 0,0116 & 0,7162 &  \\ \hline
+    roof\_board & Tag med hældning      & 0,0133 & 0,0041 & 0,0013 & ** \\ 
+\hline
+    \multicolumn{6}{c}{\textbf{Rumlige- og nabolagsvariable}} \\ \hline
+    daycare &   Meter til børnehave/vuggestue    & 0,0001 & 0,0000 & 0,0000 & 
+*** \\ \hline
+    sch\_grade & AfgangsGns. For nærmeste skole        & 0,0130 & 0,0025 & 0,
+0000 & *** \\ \hline
+    GnsPersoni &  Gns. indkomst i lokalområdet     & 0,0000 & 0,0000 & < 2.2e-
+16 & *** \\ \hline
+    park\_dist &  Afstand til nærmeste park     & 0,0000 & 0,0000 & 0,8605 &  
+\\ \hline
+    \multicolumn{6}{c}{\textbf{Fokus variable}} \\ \hline
+    D\_1000 & Over/under 1000 m.       & -0,0198 & 0,0055 & 0,0004 & *** \\ 
+\hline
+    \footnotesize{D\_1000:metro\_efter} & Interaktion      & -0,0206 & 0,0057 
+& 0,0003 & *** \\ \hline
+    metro\_efter & solgt før/efter metro. åbn.   & -0,0013 & 0,0078 & 0,8707 &
+  \\ 
+  	\hline
+    \end{tabular}%
+  \label{tab:modeltre}%
+	\item{Note: Signifikantsniveauer:  0,01***, 0,05** og 0,1*}
+\end{table}
+%
+ 		
+\begin{table}[H]
+  \centering
+  \caption{Estimation af Model $3$. Difference-in- difference ift. over/under 
+$1000$ meter til st.}
+    \begin{tabular}{|l|l|l|l|l|l|}
+		\hline
+      Variable       & Beskrivelse    & Estimat & Std.afvigelse & Pr(>|t|) &  
+\\ \hline		
+		\multicolumn{6}{c}{\textbf{Stationsdummier - Nærmeste station}} \\ \hline
+    Norreport\_L &       & 0,1798 & 0,0073 & < 2.2e-16 & *** \\ \hline
+    Kongens\_nytorv\_L &       & 0,2326 & 0,0115 & < 2.2e-16 & *** \\ \hline
+    Christianshavn\_L &       & 0,2180 & 0,0097 & < 2.2e-16 & *** \\ \hline
+    Lergravsparken\_L &       & -0,0289 & 0,0071 & 0,0000 & *** \\ \hline
+    Islandsbrygge\_L &       & 0,1614 & 0,0097 & < 2.2e-16 & *** \\ \hline
+    DR\_byen\_L &       & -0,0535 & 0,0112 & 0,0000 & *** \\ \hline
+    Bella\_center\_L &       & -0,0912 & 0,0118 & 0,0000 & *** \\ \hline
+    Forum\_L &       & 0,0996 & 0,0078 & < 2.2e-16 & *** \\ \hline
+    Flintholm\_L &       & -0,0582 & 0,0102 & 0,0000 & *** \\ \hline
+    Vanlose\_L &       & -0,0483 & 0,0072 & 0,0000 & *** \\ \hline
+    oresund\_L &       & 0,0968 & 0,0137 & 0,0000 & *** \\ \hline
+    Femoren\_L &       & -0,0652 & 0,0108 & 0,0000 & *** \\ \hline
+    Amager\_Strand\_L &       & -0,0171 & 0,0117 & 0,1451 &  \\ \hline
+    Fasanvej\_L &       & 0,0381 & 0,0086 & 0,0000 & *** \\ \hline
+    Frederiksberg\_L &       & -0,0190 & 0,0080 & 0,0173 & * \\ \hline
+    Sundby\_L &       & -0,0241 & 0,0272 & 0,3749 &  \\ \hline
+    Lindevangen\_L &       & -0,0238 & 0,0082 & 0,0039 & ** \\ \hline
+       
+    Årsdummier &       &       &       & < 2.2e-16 & *** \\ \hline
+         
+    $R^2$  & 0,7469 &       &       &       &  \\ 
+		\hline
+    \end{tabular}%
+  \label{tab:addlabel}%
+	\item{Note: Signifikantsniveauer:  0,01***, 0,05** og 0,1*}
+\end{table}
+%
+
+I model $3$ antages, at i perioden før metrostationen blev bygget, var alle 
+upåvirket af metrostationen. Efter at stationen er blevet bygget, er dem, der 
+ligger mindre end $1000$ meter påvirket, mens dem, der ligger mere end $1000$ 
+meter fra stationen, ikke er påvirket af metrostationens opførsel. På baggrund 
+af model $3$ undersøges, hvad gevinsten forbundet med 
+metrostationens åbning har været for boliger, der ligger under $1000$ meter fra 
+stationen (dummy er lig $0$) i forhold til dem, der ligger over $1000$ meter 
+fra 
+stationen(dummy lig $1$). Findes effekten til at være nul, betyder det, at 
+metrostationen ikke har påvirket boligerne der ligger tæt på. 
+Den estimerede effekt for boligerne der ligger over $1000$ meter fra en 
+metrostationer er på  $-2,1$ \%. Hvilket betyder, at alle boliger, der ligger 
+inden for de $1000$ meter af metrostationen sammenlagt vil have oplevet en 
+prisstigning på $2,1$ procent, efter stationen er åbnet i forhold til de 
+boliger 
+der ligger mere end $1000$ meter fra en metrostation. 
+De resterende variables påvirkning på prisen ændres ikke markent i forhold 
+til model $2$.  
+
+
+\subsection{Resultater - Overjordiske stationer} 
+Da der i de tre tidligere modeller, ser ud til at være en forskel på 
+områdedymmierne, analyseres nærmer, hvad priseffekten er for boliger, der 
+ligger tæt på en overjordisk station. Det kan forventes, at der bl.a. er 
+større støjgener og eventuelt også virtuelle ændringer i forhold 
+til stationerne, der ligger over jorden, faktorer der kan have forstyrret 
+resultaterne i model $2$. Estimationen udføres som ved model $2$, med den 
+undtagelse, at datasættet kun er på stationer over jorden, da det er her man 
+må forvente, at der er den klareste tendens til at se en priseffekt, der er 
+lavere meget tæt på og derefter stigende med en faldende tendens, når man 
+kommer lidt længere væk fra stationen. Samtidig skal det dog også nævnes, at 
+de stationer, der ligger over jorden, alle er stationer, der liggere længere 
+væk fra centrum, så analysen kan lige såvel, ses som en analyse af boliger, 
+der er placeret længere væk fra centrum.   
+
+$R^2$-værdien på $70,06$ procent, dvs. $70,06$ procent af variationen i 
+datasættet er beskrevet. Dette er en smule lavere end ved de to foregående 
+analyser, hvor omkring $75$ procent af variationen var beskrevet. 
+Resultatet af modelkørslen er præsenteret i bilag ~\ref{sec:model4}. I 
+forhold til fortegn 
+og signifikansniveau er der ikke store forskelle fra de tidligere modeller, 
+dog ændres nogle få variable fortegn. Etagehøjde har fået en negativ 
+betydning, hvilket betyder, at des lavere etage des større priseffekt på 
+boligen. Dette er omvendt sammenhæng af, hvad markedet afspejler. Afstanden 
+til park er derimod blevet signifikant, og det findes, at det påvirker i en 
+positiv grad, dog er estimatet tæt på nul.   
+Modellen belyser en interessant sammenhæng mellem afstanden til 
+metrostationen. For de boliger, der ligger 
+meget tæt på, har der været en meget stor prisstigning, efter at stationen er 
+åbnet. Dette kan eventuelt skyldes, at deres priser har været tvunget ned, 
+mens byggeriet stod på, og således oplever de en stor prisstigning, når 
+byggepladsen pakkes sammen, og stationen åbner. Dette kan være en forklaring 
+på den store 
+ændring og stemmer overens med, hvad der pånuværende tidspunkt observeres for 
+de boliger, der ligger i nærheden af en byggeplads i forbindelse med 
+udvidelsen af metrosystemet. 
+Efter $200$ meter ses en tendens til faldende priseffekt, hvilket 
+stemmer meget godt overens med teorien og de forventede resultat.  Analysen 
+af priseffekten er vist i tabel ~\ref{table:overjord}. 
+%
+\begin{table}[H]
+\centering
+\caption{Priseffekt fordelt på meterintervaller model $4$}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+  $0-200$  &$201-400$  & $401-600$  & $601-800$  & $801-1000$  \\ \hline
+	$18,8$ \% ***  & $4,5$ \% **  & $4,6$\% ***    & $0,4$ \%     & $2,6$ \% * 
+\\ 
+	\hline
+	\end{tabular}
+\label{table:overjord}
+\item{Note: Signifikantsniveauer:  0,01***, 0,05** og 0,1*}
+\end{table}
+%
+
+\subsection{Robusthedsanalyse}
+Efter at have estimeret fire modeller, for at kunne verificere forskellige 
+aspekter af metrostationernes effekt på boligprisen, udføres robusthedstest 
+for at identificere om modellen rammer tæt på de sande parameterestimater. 
+Som den første test beregnes model $2$ med kvartalsdummyer for at se, om 
+dette har en signifikant betydning for estimatern. Inkludering af 
+kvartalsdummyer i modellen ændrer ikke på fortegn eller 
+det overordnede signifikansniveauet for de estimerede værdier. 
+
+Da spredning på boligpriserne er høj, og der er få observationer, der ligger i 
+ydrepunkterne af fordelingen, benyttes censorering per år på datasættet. Her 
+tages alt der er mindre end den  $5$\% percentil og højere end  $95$\% 
+percent og sættes til henholdsvis $5$\% percentil og $95$\% percentil for 
+hvert 
+enkelte år. Ved brug af censorering af datasættet, mindskes variationen i 
+datasættet. Censoreringen medfører til gengæld, at parameterestimaterne bliver 
+mere robuste, biasen(skævheden) forbedres.   
+Censoreringen ændrer ikke på fortegnene for model $2$, til gengæld forbedres 
+effekten på boligprisen fordelt for meterintervaller, resultat er vist i 
+tabellen nedenfor.  Modellen viser en faldende priseffekttendens, som boligen 
+er placeret længere fra stationen. Resultaterne af model $2$ med censorering 
+er vist i bilag  ~\ref{sec:robust2}  
+
+%
+\begin{table}[H]
+\centering
+\caption{Priseffekt fordelt på meterintervaller model $2$ under cencorering}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+  $0-200$ &$201-400$  & $401-600$ & $601-800$  & $801-1000$ \\ \hline
+$3,6$ \% ***  & $2,2$ \% ***  & $2,9$\% ***    & $2,6$ \% *** & $1,7$ \% *** 
+\\ 
+	\hline
+	%\label{table:met}
+\end{tabular}
+\item{Note: Signifikantsniveauer:  0,01***, 0,05** og 0,1*}
+\end{table}
+%  
+
+\subsection{Opsamling - Hedoniske pris model}
+Det oprindelige formål med analysen, var at belyse sammenhæng mellem afstand til metrostationen
+og prisen På baggrund af den hedoniske analyse, udført med en simpel OLS ses, at den 
+positive effekt dominerer, da der observeres en positiv aftagende effekten, 
+som boligen er placeret længere væk fra metrostationen. I figurerne nedenfor er 
+vist sammenhængen mellem pris og afstand før og efter metrostations åbning. 
+Mønsteret i de to figurer er ens, med en lidt bløder aftagende effekt frem 
+til $300$ meter, hvorefter den aftagende effekt er kraftigere. Samtidig ses, at efter metrostationsåbningen, er kurven stejlere. Det vil sige, at den 
+aftagende effekt er kraftigere for hver enkelt meter. En foklaring på hvorfor 
+den aftagende tendens allerede har været observeret før stationerne åbnede er, at 
+flere steder har der været anlagt stationer i forvejen f.eks. omkring Vanløse 
+og Nørreport. Samtidig er der for udvalgte stationer meget få observationer 
+få de boliger der ligger tættest på stationerne. I analysen er der også 
+inddraget få rumlige- og nabolags variable, hvilket kan påvirke estimaterne, 
+for yderligere uddybning se diskutionsafsnittet.  
+
+%
+\begin{figure}[H]
+	\centering
+	\caption{Prissammenhæng før metrostationensåbning}
+		\includegraphics[scale=0.8]{Pris_OLS_For}
+		%\label{fig:hedonisk}
+\end{figure}
+%
+%
+\begin{figure}[H]
+	\centering
+	\caption{Prissammenhæng efter metrostationensåbning}
+		\includegraphics[scale=0.8]{Pris_OLS_Efter}
+		%\label{fig:hedonisk}
+\end{figure}
+%
+
+beregningen af figurerne ovenfor er beskrevet nærmere i bilag ~\ref{
+sec:OLSpredict}
+
+\subsection{Resultater - Additive Model}
+I dette afsnit præsenteres resultaterne af estimationen af den additive 
+model. Den additive model er estimeret med og uden længde- og breddegrader. 
+Som beskrevet i metodeafsnittet, er den additive model blot en udvidelse af 
+den hedoniske model. Meterintervallerne i den hedoniske model er erstattet med 
+et ikke-parametrisk led, for afstanden til metrostationerne, som skaber en 
+større grad af fleksibilitet i beregningen. 
+
+Som ved den hedoniske model analyseres den additive model også ved hjælp af 
+en modelkontrol.
+%
+\begin{figure}[H]
+	\centering
+	\caption{Modelkontrol - Additive model}
+		\includegraphics[scale=0.8]{gam_kontrol}
+		%\label{fig:hedonisk}
+\end{figure}
+%
+Figurerne overfor beskriver tydeligt problemer med hetroskedasticitet, og et 
+klart brud på normalitetsantagelsen. 
+
+Der findes ikke en simpel måde at korrigere for hetroskedasticiteten i den 
+additive model. Da den additive model, ved at inddrage nogle få ikke-parametriske led, blot er en udvidelse af den linære model estimeret i 
+forrige afsnit, sammenholdes den additive models estimater med den linære 
+model, hvor der er korrigeret for hetroskedasticitet. Da det primært er 
+relationen omkring afstand og prisen, der er relevant, og det viser sig at de 
+parametriske led ikke ændres markant, beskriver teksten i dette afsnit 
+forholdet omkring afstandesparameteren, og hvordan denne ændres i forhold til 
+den simple hedoniske model, når den tilføjes en højere grad af fleksibilitet 
+i form af en ikke-parametrisk form. De parametriske led, og funktionen for 
+årsvariabel, er beskrevet i bilag ~\ref{sec:add1} og ~\ref{sec:add2}. 
+
+Der findes flere muligheder for at estimere smoothing-delen af den additive 
+model. I specialet er valgt pakken ``mgcv'' fra programmet R. Til at estimere 
+modellen 
+benyttes funktionen GAM, hvor der i stedet for at benytte GAM's standard 
+smoothing funktion som er Thin plate splines, er benyttet en- dimensionelle 
+cubic smoothing splines. Til estimationen af en smoother skal vælges antallet 
+af ``Knots'' dvs. forbindelsespunkter. Alt efter antallet af punkter, vil 
+graden af udglatning variere. 
+GAM har sin egen funktion til at beregne det mest optimale antal af 
+forbindelsespunkter. Til beregning benyttes et værktøj kaldet ``Cross-
+validation'', som automatisk vælger mængden af udglatning for den pågældende 
+smoother. Resultaterne der præsenterers her, benytter sig af den 
+indkorporerede funktion. Som robusthedskontrol sættes 
+manuelt antallet af forbindelsespunkter for at identificere, om det påvirker 
+resultaterne.  
+
+
+I analysen ses kun nærmere på alle stationer, der er placeret $1000$ meter 
+eller mindre fra en metrostation. Alle observationer over $1000$ har i 
+datasættet fået værdien $0$. Derefter er de resterende værdier fastsat ud fra, 
+at de stationer, der ligger lige oven i stationen, har værdien $1000$, og 
+derefter faldende afstand i figuren, som man rykker længere væk fra stationen. 
+%
+\begin{figure}[H]
+	\centering
+	\caption{Sammenhæng før/efter metrostationensåbning uden længde-og 
+breddegrad}
+		\includegraphics[scale=0.8]{GAM0}
+		\item{Bemærk, at en afstand på $1000$ betyder, at man står lige oven i 
+metrostationen}
+		%\label{fig:hedonisk}
+\end{figure}
+%
+\begin{table}%
+\caption{}
+\centering
+\begin{tabular}{l|l l l l l}
+\hline 
+Variable - funktion  & Frihedsgrader    & Ref.df  & F-test       & p-værdi  & 
+Sig.  \\ \hline 
+s(Zero\_1000):period1 & 5.537  &6.603    & 10.15    &6.16e-12 & ***   \\ 
+\hline  
+s(Zero\_1000):period2 & 6.514  &7.594    & 16.23    &< 2e-16  & ***   \\ 
+\hline 
+s(aar)               & 8.924  &8.998    & 1437.26  &< 2e-16  & ***   \\ 
+\hline 
+\end{tabular}
+%\label{}
+\item{Note: Signifikantsniveauer:  0,01***, 0,05** og 0,1*}
+\end{table}
+
+
+$R^2$ værdien for den estimerede model er på $74,7$ procent, hvilket betyder, 
+at $74,7$ procent af datavariationen er beskrevet i modellen. Frihedsgraderne 
+beskriver mængden af udglatning, dermed er kurven for periode $1$ udglattet 
+en smule mere end for periode $2$. Grafisk beskriver funktionen$s(\cdot)$ 
+forholdet mellem afstanden til metrostationen og prisen på boligerne, når 
+alle andre variable holdes konstante. Således kan der ikke siges noget om 
+den præcise effekt på prisen, men figuren giver en klar indikation af 
+sammenhængen mellem boligpriseffekten og afstanden til stationen, som afstanden mellem bolig og stationen øges. De sorte 
+lodrette streger, som i figuren hænger sammen, indikerer hvor der er 
+observationer. Det er dermed muligt at se, at der er meget få eller ingen 
+observationer for den korteste afstand til metroen, dette hænger sammen med 
+at den korteste observerede afstand i datasættet er omkring $42$ meter. På figuren fremgår også et standardsfejlleds interval, det er beregnet som plus/minus to gange standardfejlen, således vil et bredt interval indikere beregning på få eller ingen observationer, mens omvendt ved et lille spænd. Husk 
+når der ses på figuren at $1000$ indikerer at boligen er placeret lige oven i 
+metroen, og som afstanden i figuren mindskes er boligen placeret længere væk. For periode 
+$1$ ses at indenfor en afstand på $300$ meter fra metrostationen vil effekten være, at boligenspris stiger, som 
+afstanden mellem station og bolig øges. Da den observerede periode går fra $2000$ og frem 
+til åbningen af de første stationer i $2002$  og $2003$, vil meget af den 
+negative effekt højest sandsynlig skyldes støj og støv fra byggepladsen, som 
+har været etableret på daværende tidspunkt. Samtidig skal det bemærkes, at 
+der i periode $1$ kun er medtaget $2$ år, da datasættet ikke indeholder data 
+længere tilbage end til $2000$, og de første stationer åbnede i $2002$. Efter 
+de $300$ meter til metrostationen er sammenhængen faldende med tendens til 
+udglatning.  
+
+I periode $2$  ses den samme effekt som i periode $1$, dog er stigningen og 
+faldet ikke så markant. Kurven i periode $2$ svinger lidt mere. På funktionen 
+ses også, at den ikke er udglattet i samme grad. Datagrundlaget for periode $2$
+ er også langt større, så der er flere observationer, som kurven skal 
+tilpasses, hvilket kan give flere krumninger på kurven. 
+
+Samlet viser kurverne den i specialet antagede hypotese om, at der er knyttet nogle 
+negative eksternaliteter til området omkring metrostationen, som kan medføre, 
+lavere priser i området lige omkring en metrostation. 
+%
+\begin{figure}[H]
+	\centering
+	\caption{Sammenhæng før/efter metrostationens åbning med længde- og 
+breddegrad}
+		\includegraphics[scale=0.8]{GAM1}
+		%\label{fig:hedonisk}
+		\item{Bemærk, at en afstand på $1000$ betyder, at man står lige oven i 
+metrostationen.}
+\end{figure}
+%
+I estimationen, der indrager længde- og breddegrad, ses, at for periode $2$ er 
+der kun $3,489$ frihedsgrader. Større værdi af frihedsgraderne indikerer 
+mindre smoothing. Flere intervaller, der estimeres på, giver flere svingninger.
+Denne lave værdi af frihedsgrader indikerer stor grad af udglatning, højest 
+sandsynligt med en stor grad af overfitting, hvilket kan sløre estimaterne.  
+$R^2$ værdien er på $75,2$ procent, hvilket kun er lidt højre end i tilfældet 
+for den foregående model. Ved at inddrage længde- og breddegrader forventes 
+der en forbedring af estimaterne. Dette skyldes bl.a., at placeringen af boligen, 
+som er helt central, før har ligget i fejlleddet, men nu inddrages, og derfor 
+kan mindske noget af den eksisterende ``omitted varians bias''. Af estimationen ser det dog ikke 
+ud til at resultaterne forbedres. Dette kan evt. skyldes, at der eksisterere 
+multikollinaritet mellem afstanden og placeringen. Således er der et trade-
+off mellem mindskelse af ``omitted varians bias'' og øget multikollinaritet.  
+
+%
+\begin{table}
+\caption{}
+\centering
+\begin{tabular}{l|l l l l l}
+\hline 
+Variable - funktion  & Frihedsgrader    & Ref.df  & F-test       & p-værdi  & 
+Sig.  \\ \hline      
+s(Zero\_1000):period1 &5.570  &6.640   &14.71  &<2e-16 &*** \\ \hline
+s(Zero\_1000):period2 &3.489  &4.302   & 5.81   &8e-05 &*** \\ \hline
+s(x)                 &8.654  &8.966   &33.26  &<2e-16 &*** \\ \hline
+s(y)                 &8.676  &8.967   &55.28  &<2e-16 &*** \\ \hline
+s(aar)               &8.924  &8.998   &1463.61  &<2e-16 &*** \\
+\hline
+\end{tabular}
+%\label{}
+\item{Note: Signifikantsniveauer:  0,01***, 0,05** og 0,1*}
+\end{table} 
+
+
+Grafisk kan de ovenstående diagrammer inddeles i tre dele. Tæt på stationen, som 
+er mellem $0$(afstand = $1000$)og $300$(afstand = $700$) meter, midten $300$(
+afstand = $7000$)og $600$(afstand = $400$) meter og langt væk $600$(afstand = 
+$400$)og $1000$(afstand = $0$) meter. Opdelinger gør sig gældende i begge 
+perioder. 
+
+For de boliger, der ligger tæt på metrostationen, er der en tendens til 
+stigende priser, som effekt af at afstanden mellem boligen og stationen øges. I periode $
+1$ er forholdet langt større end i periode $2$. for boliger, der er placeret i 
+midterdelen af diagrammerne, er tendensen faldende, som afstanden mellem boligen og stationen øges. Boligernre der er placeret langt væk fra en 
+metrostationen, skulle nærme sig nul og således at de til sidst ingen effekt havde for boligens pris.  
+Dette var tilfældet, når længde- og breddegrader ikke var inkluderet. 
+Når de inkluderes ser tendensen derimod ud til at være stigende. 
+Datasættet eller modellen giver ikke nogen klar forklaring på denne 
+udvikling, og små ændringer i modellen påvirker heller ikke resultatet. En 
+mulig forklaring kan evt. kædes sammen med muligheden for overfitting, og 
+evt. tilpasning til nogle få og evt. ekstreme observationer. Samtidig kan der 
+også være andre rumlige faktorer, der ikke er medtaget i modellen, som er 
+skyld i udviklingen. Kædet sammen med andre forklarende faktorer, er det også 
+muligt, at metrostationseffekten slet ikke rækker så langt ud. 
+  
+%
+\begin{figure}[H]
+	\centering
+	\caption{Grafisk illustration af flad udspændt mellem længde- og breddegrad}
+		\includegraphics[scale=0.8]{path3989}
+		%\label{fig:hedonisk}
+\end{figure}
+%
+
+\subsection{Robusthedstest}
+Som kontrol estimeres den addtive model på manuelt fastsatte værdier af 
+smoothing. Det er værdierne for forbindelsespunkter, der sættes til $20,40,60,$
+ og $100$. I alle estimationerne ses umiddelbart ikke nogen ændringer i de 
+parametriske værdier. For smoothingfunktionerne, ændres antallet af 
+forbindelsespunkter og dermed frihedsgrader, men signifikansniveauet påvirkes 
+ikke. 
+Smoothing funktionen ændres, grundet mængden af udglatning der sker, når 
+værdierne ændres. Ved højere værdi bliver kurven mindre udglattet, og det er 
+svært at spore en klar sammenhæng. 
+Af figurene er det tydeligt at se, at for periode $2$ er der langt flere 
+datapunkter end for periode $1$. Når mængden af forbindelsespunkter, og 
+dermed intervaller øges, bliver det nærmest umuligt at se et mønster i kurven. 
+
+%
+\begin{figure}[H]
+	\centering
+	\caption{Robusthedskontrol - $20$ forbindelsespunkter}
+		\includegraphics[scale=0.8]{K20}
+		%\label{fig:hedonisk}
+		\item{Bemærk, at en afstand på $1000$ betyder, at man står lige oven i 
+metrostationen}
+\end{figure}
+%
+
+%
+\begin{figure}[H]
+	\centering
+	\caption{Robusthedskontrol - $40$ forbindelsespunkter}
+		\includegraphics[scale=0.8]{K40}
+		%\label{fig:hedonisk}
+		\item{Bemærk, at en afstand på $1000$ betyder, at man står lige oven i 
+metrostationen}
+\end{figure}
+%
+
+%
+\begin{figure}[H]
+	\centering
+	\caption{Robusthedskontrol - $80$ forbindelsespunkter}
+		\includegraphics[scale=0.8]{K80}
+		%\label{fig:hedonisk}
+		\item{Bemærk, at en afstand på $1000$ betyder, at man står lige oven i 
+metrostationen}
+\end{figure}
+%
+
+\subsection{Opsamling - Additive model}
+Den additive model viser i modsætning til den hedoniske model, at boligerne, 
+der ligger tættest på en metrostation, vil kunne opleve en lavere værdistigning 
+i boligen grundet, at de ligger tæt på en metro, i forhold til dem, der ligger 
+nogle $100$ meter længere væk. Ved indragelse af længde-og breddegrader har 
+kurven et sving op for de boliger, der er placeret langt fra metrostationen. 
+Dette er ikke forventet, men datasættet og modellen giver ikke en klar 
+fortælling af, hvorfor det sker. 
+For smoothing funktioner er antallet af frihedsgrader forholdsvist lavt, 
+dermed sker der en stor grad af udglatning. Samlet ser det ud til, at 
+inddragelse af fleksibiliteten på afstandsparameteren, giver en bedre 
+beskrivelse af strukturen i data, og dermed sammenhængen mellem boligprisen 
+og afstanden til metrostationen. Dog mangler der flere beskrivende variable 
+for området, hvor boligen er placeret, og der er et stort potentiale for at 
+forbedre modellen, hvilket er diskuteret nærmer i næste afsnit, hvor også 
+nogle af problemstillingerne ved den additive model er vendt. 
+
+For at vise hvordan afstanden til metrostationen og placering til boligprisen 
+hænger sammen, er prisen på en defineret lejlighed beregnet. Dette er gjort 
+med samme fremgangsmåde som ved den simple hedoniske model, for nærmer 
+beskrivelse se bilag ~\ref{sec:GAMpredict}
+
+Udviklingen efter, at metrostationen er åbnet, ser således ud: 
+%
+\begin{figure}[H]
+	\centering
+	\caption{Sammenhængen mellem lejlighedspris og afstand til station, $2008$}
+		\includegraphics{GAMpredict}
+		%\label{fig:hedonisk}
+		\end{figure}
+%
+

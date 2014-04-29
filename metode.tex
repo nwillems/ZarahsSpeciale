@@ -1,0 +1,191 @@
+\section{Modelmetode}
+\label{sec:Modelmetode}
+Dette kapitlet beskriver metoden, der bruges til at analysere, hvordan 
+boligpriserne påvirkes af afstanden til metrostationen. Og modellen, der 
+benyttes til estimationen, præsenteres. 
+
+\subsection{Hypotese}
+Der antages, at de estimerede meterintervalsværdier er positive, 
+dette bygger på tidligere analyser bl.a. Agostini og Palmucci ($2008$), Chen et al 
+($1997$) og Dewees ($1976$). Andre har vist, at det kan formodes, at denne 
+positive effekt ikke nødvendigvis er lineær forbundet med afstanden. Således 
+viser Bowes($2001$), at effekten for boliger meget tæt på  en metrostation, kan 
+være negativ, mens Chen et al. ($1997$) viser, at man kan forvente, at prisen 
+på boliger, der ligger meget tæt på, har en mindre positiv effekt af 
+metrostationen end dem, der er placeret et par meter væk fra støj og 
+metroindgangen.  
+
+Det er denne sidste effekt, som den følgende analysen ønsker, at belyse. 
+%
+\begin{figure}[H]
+	\centering
+	\caption{Sammenhængen mellem prisfunktionen og budkurven}
+		\includegraphics[scale=0.8]{pris_afstand}
+\end{figure}
+%
+Da der i datasættet, der er brugt til analysen, er en stor variation i priserne 
+på de 
+enkelte boliger, og der ved brug af de rene priser vil være en fordelingen 
+med meget få observationer over mod de høje priser, er det hensigtsmæssigt at 
+benytte 
+logaritmen til prisen, da denne sikrer, at fordelingen bliver mere symmetrisk, 
+og derfor passer bedre til en OLS estimation.  
+%
+\begin{figure}[H]
+	\begin{minipage}[b]{0.5 \textwidth}
+	\centering
+	\caption{Fordelingen af priser}
+		\includegraphics[width=\textwidth]{hist_price}
+\label{fig:price}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.5 \textwidth}
+\centering
+\caption{Fordeling af logaritmiske priser}
+		\includegraphics[width=\textwidth]{hist_logprice}
+\label{fig:logprice}
+\end{minipage}
+\end{figure}
+%
+
+\subsection{Funktionelle form}
+Til brug i den simple model benyttes en semilogaritmisk linære model, hvor 
+den beskrivende 
+variabel er logaritmisk, mens de forklarende variable er i absolutte 
+ændringer. Dermed vil regressionen, beregne estimater der viser den relative 
+ændring i den beskrivende variabel givet en absolut ændring i de forklarende 
+variable.
+Datasættet er et underdatasæt af datasættet brugt i Panduro et. al(IFRO 
+rapport,$2012$) der estimeret værdisætningen af bykvaliteter. I rapportens analyse 
+benyttes en semilogaritmisk linære model, og således benyttes i specialet også 
+samme modeltype. Samtidig benyttes i litteraturen ofte en model med en log-transformeret responsevariabel. 
+
+Da flere studier i litteraturen bl.a. Cherrih og Sherris ($2004$) samt Panduro og Veie ($2013$)foreslår alternativer til den simple model, med en log-transformeret response variabel, laves også en analyse, hvor 
+en ikke-paramtrisk form på afstandparameteren benyttes, her benyttes en additive model.
+
+\subsection{Den Hedoniske Model}
+Modeldannelsen bygger som beskrevet i afsnit ~\ref{subsec:Den_hedoniske_metode} på 
+Rosen($1967$). 
+Grundstammen i den model, der benyttes til estimationen, kan beskrives ved 
+hjælp af følgende ligning: 
+%
+\begin{equation}
+logP_{it} = \beta_0 + \beta_{1}X_{it} + \beta_{2}L_{it} + \beta_{3} Dm_{ij} + 
+D_j^{metro} + D^T + \epsilon_{it} 
+\label{eq:grundligning}
+\end{equation}
+%
+Hvor $i$ referer til en given bolig og $t$ til et bestemt tidspunkt. $P_{it}$ 
+er salgsprisen på en given bolig, $X_{it}$ er en vektor, der består af boligens 
+forskellige karakteristika så som størrelse antal,  osv.,  $L_{it}$ er 
+en vektor, der beskriver nabolaget bl.a. gennemsnitlig indkomst og skolernes 
+karaktergennemsnit ved afgangsprøven og den indeholder også de rumlige 
+variable med undtagelse af afstand til metrostationen , $Dm_{ij}$ er afstanden 
+til en bestemt metro $j$ for en given bolig $i$, $D_j^{metro}$ er en 
+dummyvariabel der angiver, hvilken metrostation boligen ligger tættest på, $D^T$ 
+er en vektor indeholdende tidsdummyer(års- eller kvartalsdummier i estimationen) og  $
+\epsilon_{it}$ er fejlledet, som fanger uobserveret variation. 
+
+For at fange metrostationseffekten udvides modellen med en dummyvariabel, der 
+fortæller, om boligen er solgt før eller efter metrostationen er åbnet. Ofte 
+vil der allerede være en effekt, når det annonceres, at der bliver bygget 
+en metrostation, men da data ikke dække over en årrække, hvor denne type af 
+analyse er mulig, ses i stedet på boliger, der er solgt før og efter, at 
+stationen er åbnet. 
+
+Udvidelsen af modellen er som følgende: 
+%
+\begin{equation}
+logP_it = \beta_0 + \beta_{1}X_{it} + \beta_{2}L_{it} + \beta_{3}Dm_{ij} + 
+\beta_{4}
+ Dpost_{ijt} \cdot Dm_{ij}+ D_j^{metro} + D^T + \epsilon_{it} 
+\label{eq:udv_model}
+\end{equation}
+%
+Hvor $Dpost_{ijt}$ er en dummy, der fortæller, om der til tidspunktet t er 
+kommet en metro og hvilken station, det er. 
+
+Et alternativ til den første model er, at regressere en difference-in-
+difference estimation, hvor der sammenlignes boliger, der ligger langt væk fra 
+metrostationen dvs. mere end $1000$ meter med boliger, der ligger indenfor $
+1000$ meter til metrostationen. Her antages det, at boliger, der ligger mere 
+end $1000$ meter væk fra station, ikke bliver påvirket af den nye 
+metrostation. Antagelsen er således, at den gennemsnitlige ændring i 
+boligprisen, hvis metrostationen ikke var blevet bygget, ville have været den 
+samme for boliger, der var påvirket og upåvirket af den nye metrostation. 
+%
+\begin{equation}
+logP_it = \beta_0 + \beta_{1}X_{it} + \beta_{2}L_it + \beta_{3} Dm_{ij} + 
+\beta_
+{4}Dpost_{ijt} \cdot D1000_{ijt} + D_j^{metro} + D^T + \epsilon_{it} 
+\label{eq:dif_dif}
+\end{equation}
+%
+Hvor $D1000_{ij}$ er en dummyer, der er $1$, hvis boligerne er under $1000$ 
+meter fra en metrostation, ellers $0$.
+
+Udover de tre ovenstående modeller estimeres model $2$ også på et 
+underdatasæt,
+der kun indeholder alle stationerne, der ligger over jorden. 
+
+Grundmodellen, som er den de resterende modeller regresseres over, er 
+defineret 
+således:
+
+$$logprice = area + age_{1980\_1999}+  age_{1948\_1979} + age_{1910\_1948}+
+ $$
+$$age_{1875\_1910}	+ age_{1850\_1875} + brick + roof_tile + roof_cement + 
+roof_board$$
+$$bathrooms + rooms +  floor +  B\_units\_nr +toilets + daycare + sch\_grade +
+ GnsPersoni +$$
+$$park\_dist +  Dist_{0\_200} + Dist_{201\_400} + Dist_{401\_600} + Dist_{601
+\_800} + Dist_{801\_1000} + $$ 
+$$ Norreport\_L + Kongens\_nytorv\_L + Christianshavn\_L + Lergravsparken\_L +
+ $$ 
+$$Islandsbrygge\_L +  DR\_byen\_L + Bella\_center\_L +Forum\_L + Flintholm\_L 
++ $$
+$$Vanlose\_L + oresund\_L+ Femoren\_L + Amager_Strand\_L + $$
+$$ Fasanvej\_L + Frederiksberg\_L + Sundby\_L + Lindevangen\_L +$$
+$$  D_{01} + D_{02} + D_{03} + D_{04} + D_{05} + D_{06} + D_{07}$$
+$$ + D_{08} + D_{09} + D_{10} + D_{11} + D_{12} + D_{13} $$
+
+
+\subsection{Additive model}
+
+Med udgangspunkt i den hedoniske model, udvides denne ved hjælp af smoothing funktioner.
+Udtrykket for den additive model skrives derfor op på følgende form: 
+%
+\begin{equation}
+logP_it = \beta_0 + \beta_{1}X_{it} + \beta_{2}L_{it} + \beta_{3}f(Dm_{ij}) + 
+\beta_{4}
+ Dpost_{ijt} \cdot f(Dm_{ij})+ D_j^{metro} + f(D^T) + \epsilon_{it} 
+\label{eq:}
+\end{equation}
+%
+I ovenstående ligning er der taget udgangspunkt i model $2$ - som er den der udvides til en additiv model. 
+$dm_{ij}$ er ikke længere meterintervaller som ved den hedoniske model, men derimod en variabel, der beskriver afstanden 
+til nærmeste metrostation. Da variabel er beregnet som afstanden til nærmeste metrostationen undgås, at der er boliger, der kan tælle med 
+flere steder(i tilfælde med kortere end $1000$ meter mellem to stationer), når der ses på alle boliger, der ligger inden for $1000$ meter.
+Den hedoniske model $2$, bliver til en additiv model, ved at der tilføjes et ikke parametrisk led i form af en smoothingfunktion, udtrykt ved hjælp af cubic smoothing splines. 
+$i$ referer til en given bolig og $t$ til et bestemt tidspunkt. $P_{it}$ 
+er salgsprisen på en given bolig, $X_{it}$ er en vektor der består af boligens 
+forskellige karakteristika så som størrelse antal  osv.,  $L_{it}$ er 
+en vektor der beskriver nabolaget bl.a. gennemsnitlig indkomst og skolernes 
+karaktergennemsnit ved afgangsprøven og den indeholder også de rumlige 
+variable med undtagelse af afstand til metro stationen, $D_j^{metro}$ er en 
+dummyvariabel der angiver hvilken metrostation boligen ligger tættest på, $D^T$ 
+indeholder årsvariabel, som smoothes ved hjæølp af cubic smoothing splines.
+$\epsilon_{it}$ er fejlledet som fanger uobserveret variation. 
+
+
+Den additive udgave af model $2$ udvides efterfølgende med to smoothing funktioner, der inddrager længde- og breddegrad. 
+$$logP_it = \beta_0 + \beta_{1}X_{it} + \beta_{2}L_{it} + \beta_{3}f(Dm_{ij}) + $$
+$$\beta_{4} Dpost_{ijt} \cdot f(Dm_{ij})+ D_j^{metro} + f(laengdegrad) + f(breddegrad) $$
+$$+ f(D^T) + \epsilon_{it} $$
+
+Da længde- og breddegrad åbenlyst er korrelerede ville det være oplagt at analysere dem i den samme 
+smoothing funktion. Dette er dog ikke gjort her, da der benyttes cubic smoothing splines, og de er 
+en-dimensionelle og derfor ikke kan håndterer to variable i deres smoothing funktion. For 
+at kunne samlet længde- og breddegrad i en fælles smoother, kræver det smoother af en mere avanceret karakter, det er smoother som thin plate splines,  som 
+ikke er valgt at blive benytte i dette speciale. Tilgengæld ville det være et oplagt sted at forbedre modellen. Denne problemstilling er diskuteret nærmere i afsnittet der omhandler dikskussion af de valgte modeller. 
+  

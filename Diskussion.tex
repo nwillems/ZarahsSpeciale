@@ -1,0 +1,92 @@
+\section{Diskussion}
+
+I dette afsnit diskuteres resultaterne fundet i forrige afsnit, samt 
+problemstillinger ved de to opstillede modeller og steder hvor en forbedring 
+ville være oplagt. 
+
+Hypotesen fremsat i forbindelse med analysen byggede på, at de boliger der lå 
+tættest på metrostationerne ville opleve en mindre gevinst ved åbningen af en 
+metrostation end de boliger der var placeret lidt længere væk fra stationen, 
+hvor efter effekten ville være aftagende. 
+
+Den simple hedoniske model viser en aftagende effekt, som 
+afstanden øges, således vises ikke nogen tendens til, at boliger der er 
+placeret tæt på metrostationen er påvirket rent prismæssigt af øget støj eller andre faktorer 
+forbundet med stationerne. Grunden til at effekten evt. ikke fanges kan bl.a. 
+skyldes manglende variable, der beskriver omgivelserne omkring boligen. Bl.a. 
+ville det i analysen have været relevant, at inddrage en faktor som 
+kriminalit i lokalområdet, afstand til større vej, skoler samt 
+supermarkeder og andre beskrivende områdekarakteristika.  
+Da der er meget få rumlige variable medtaget i modellen, må det antages, at en 
+hel del af den 
+rumlig variation på boligerne ikke bliver beskrevet af modellen, og vil ligge 
+og påvirke ude i fejlleddet, hvilket skabe øget omitted varianse bias, som 
+igen påvirker estimaterne, så et sted at forbedre begge modeller, 
+ville være ved øget inddragelse af rumlige variable, dette kan dog betyde større grad af multikollinaritet.   
+
+Det er vigtigt at forholde sig at metrostationer er 
+endogent placeret. Der ligge nøje overvejelser bag placeringen, og ofte er 
+stationer placeret steder, hvor der i forvejen var en stor tilstrømning af 
+mennesker, samt hvor det er praktisk rent byplanlægningsmæssigt. En 
+estimation for hver enkelt station ville have været  ønsket, således at en 
+hedoniske regession var kørt for hver enkelt station samt en additiv model, 
+hvor hver enkel station have sin egen smoothingfunktion,dette kræver dog 
+store mængder af data for hver enkelt station. Samtidig ville det have været 
+interssant at udføre analysen udelukket på lejligheder, der havde været solgt 
+før og efter at metroen var åbnet, således at sammensætning af udbydte 
+lejligheder ikke var ændret. 
+
+Da den hedoniske model vise tegn på at stationer der var placeret under 
+jorden havde positivt fortegn, mens dem over jorden var knyttet til et 
+negativt fortegn, blev en model kun indeholdende de overjordiske stationer 
+også estimeret. Denne viste dog den samme, sammenhæng som modellen 
+indeholderne alle stationerne, dog med en langt større effekt for boligerne 
+der lå tættest på metroen. 
+
+Den additive models resultater beskriver, at boligerne tæt på stationen oplever en mindre 
+positiv gevinst, end de boliger der er placeret nogle meter længere væk. 
+Således giver analysen belæg for at den antaget hypotese, kan være afspejælet i datsættet.  
+
+Fælles for den additive og den hedoniske model er 
+multikollinaritetsproblemet. Boliger der er placeret tæt på en stor vej, vil 
+alt andet lige også være påvirket af mere luftforurening og støj, disse 
+faktorer er svære at skille fra hinanden, og dette vil skabe 
+multikollinaritet i modellerne. 
+
+Grundet multikollinaritetsproblemet, og at der ofte vil være meget lidt 
+variation for boliger der ligger tæt på hinanden, kræver særligt den 
+additive model, en meget stor mængde af data, for at estimere korrekte 
+estimater og ikke overfitte når smoothingkurven estimeres. 
+
+
+For at få inkorporeret ikke linære effekter i modellerne samt øget forklaring 
+af den rumlige afhængigehed ville et oplagt sted at forbedre modellerne først 
+være ved at benytte en genraliseret form for at tillade en ikke normal 
+fordeling af fejlleddene da denne tydeligt et brudt i begge modeller. For den 
+additive model ville det være hensigtsmæssigt at udvide den til en Generalized 
+Additiv Model, og benytte Thin plate splines, som er en mere 
+avanceret smoothing teknik. Dette ville bl.a. være med til at sikre, at 
+variablene som længde- og breddegrad ville kunne estimeres sammen i en 
+fællesfunktionen, hvilket ville være helt oplagt, nu der er en tydelig
+korrelation mellem de to variable. 
+
+Datasættet er kun baseret på ejerlejligheder som kun udgør omkring $20$ 
+procent af boligbestanden i København, for at få et mere retvisende billede 
+af betydningen af afstanden til en metrostation på boligprisen, vil det være 
+relevant at inddrage andelslejligheder i datasættet.  
+
+Resultaterne i analysen kan ikke bruges til direkte at gå ud og sige hvad 
+gevinsten eller eventuelt tab for en enkelt lejlighed vil blive, da alle 
+boliger er tilknyttet meget forskellige karakteristikaer, samtidig med at 
+områderne boligerne ligger i er forskellige. $100$ meter mod syd fra en 
+metrostation er nødvendigvis ikke det samme som $100$ meter nord for en 
+metrostation.  
+
+Analysen blev primært udført for at analysere, om  den ofte 
+antaget hypotese om, at jo tættere på en metrostation des bedre, ikke altid 
+vil gøre sig gældende. Analysen beskriver dog ikke klart hvor langt effekten 
+realt rækker ud, hvilket ville være interesant at belyse.   
+
+
+
+

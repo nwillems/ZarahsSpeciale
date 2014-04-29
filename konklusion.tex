@@ -1,0 +1,78 @@
+\section{Konklusion}
+
+Specialet overordnet formål var, at belyse og analysere hvordan afstanden til 
+en metrostation påvirker boligprisen. Afstanden er i denne opgave beregnet 
+som afstanden til nærmeste metrostation. Effekten af metrostation på 
+boligprisen belyses ved hjælp af økonometrisk analyse, hvor en klassisk 
+hedonisk model benyttes, og denne udvides til en additiv model.
+
+Den fremsatte hypotese for specialet, var at boliger der er placeret lige op 
+af en metrostation, vil opleve en mindre gevinst i forhold til de boliger der 
+er placeret tæt på 
+metrostationen, men blot befinder sig nogle få $100$ meter fra station, og 
+således ikke er påvirket af øget aktivitet i området grundet stationen eller 
+evt. gener
+fra banelemmet. 
+
+Til analysen er først opstillet en hedonisk prisfastsættelses 
+model, som ved 
+hjælp af karakteristika ved boligen, samt få nabolags og rumligefaktorer 
+inkluderende afstanden til metrostationen, estimere hvorledes boligens 
+placering er påvirket af afstanden til stationen. Estimationen viser at der 
+er en aftagende sammenhæng, så jo længere boligen er placeret des, mindre 
+betydning vil metrostationen have. Denne analyser bekræfter tidligere studier 
+af den Københavns metro, men er i modstrid med hypotesen fremsat i specialet,
+ idet at de boliger der er tættest på stationen vil opleve den største gevinst.
+
+For at inddrage en øget fleksibilitet på afstandsparameteren udvides den 
+hedoniske prisfastsættelses model til en additiv model, der inddrager et ikke-
+parametrisk led i form af smoothing funktionen på afstandsparameteren. Den 
+additive model estimeres ved hjælp af metoden backfitting algoritme, som er 
+en iterativ approksimations algoritme (Additive models Berk, $2009$ - KILDE). 
+Algoritmen fungere ved at for hvert punkt analysere hvor langt dette ligger 
+fra den globale middelværdi, er derefter udføres en simpel regression på 
+forskellene, for hver enkelt faktor inkluderet i modellen. Den opnåede viden 
+for hver kørsel, tages med til den næste kørsel og estimationen tilpassese 
+den allerede opnåede viden. (additive model Berk - KILDE). 
+Estimationen for den additive model giver ikke et simpelt estimat, som kan 
+analysere som ved den simple hedonisek model, istedet fås en funktionen der 
+viser forholdet mellem den forklarende variabel og responsevariablen, alt 
+andet lige. Opdeles der i tregrupper: boliger tæt på metroen, i midten og 
+langt væk, viser estimationen af den additive model, at for gruppen af 
+boliger der er placeret tæt på metrostationen, vil effekten være større som 
+man flytter nogle meter væk fra stationen, dermed er det ikke attraktivt, at 
+bo lige op af stationen. Gruppen i midten oplever en faldende effekt, som 
+boligen er placeret længere væk fra stationen. Den sidste gruppe af boliger 
+der er placeret langt fra metrostationen, dog ikke over $1000$ meter, oplever 
+i estimationen uden længde-og breddegrader at effekten falder ud og næmer sig 
+nul, mens den for estimationen med længde-og breddegrader er stigende. 
+
+Samlet vises to forskellige effekter alt efter model valg. Hypotesen om at 
+boligerne der ligger tæt på metroen vil kunne opleve en mindre gevinst end dem 
+lidt længere væk bliver ved brug af den additive model bevist som værende en 
+mulighed.
+Dog er der med estimationen forbundet flere problemer, bl.a. er 
+metrostationerne endogent sat, de er planlagt og placeret der hvor de nu 
+ligger, på baggrund af nøje overvejelser. Samtidig indeholder begge modeller 
+meget få karakteristikaer omkring området boligen er placeret i. Bl.a. ville 
+en faktor som krimunalit og befolkningssammensætning i området også være 
+interessante variable at se nærmer på.
+Analysen er baseret på ejerlejligheder i Københavns Kommune. Da disse reelt 
+set kun udgør omkring $20$ procent af markedet i København, er dette et lille udsnit af 
+boligmarkedet. Og det ville således også være interessant, at inddrage bl.a. 
+andelsboligerne i København som udgør omkring $30$ procent af markedet. 
+
+Begge modeller lider af problemer med hetroskedasticitet og kollinaritet 
+mellem variablene, begge problemer der er svære at undgå i de valgte 
+modeller, men som der kan arbejdes videre med at mindske i modellen, dette 
+videre arbejde kan bl.a. bestå i en udvidelse af den additive model til en 
+genralized additiv model, med brug af fler-dimensionelle 
+udglatningsfunktioner, som bl.a. vil 
+give mulighed for at estimere placeringskoordinaterne i en fælles funktion, 
+samtidig vil yderligere inddragelse af
+beskrivende rumlige variable, være fordeliagtige at medtage i analysen, for 
+at forbedre beskrivelse af den rumlige korrelation. En analyse af hvor 
+langt den faktiske effekt af metroen rækker ud ville også være et spændende 
+spørgsmål at analysere, for i dag ligger der ikke en dybdegående analyse af, 
+hvor langt væk man skal være placeres fra en metrostation, før den ingen effekt har på 
+boligprisen.  

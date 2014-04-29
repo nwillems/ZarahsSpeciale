@@ -1,0 +1,26 @@
+\section{Indledning}
+
+Den københavnske metro var da den stod færdig i $2007$ en stor forbedring for den offentlig transport i København. Senere er man i $2011$ gået i gang med, at udvide systemet med en ekstra linje, hvilket har bragte øget fokus på gevinsten for de boligejer der bor i nærheden af en af de kommende metrostation. Tiligere studier af gevinsten af den københavns metro,har vist at des tættere på metroen boligen var placeret des højre gevinst ville der være (Kolstrup, $2006$). Studier fra litteraturen har dog et mere nuanceret billede af effekten på boligprisen for de boliger der ligger tæt på en station, bl.a.  grundet de positive og negative eksternalitet, der er forbundet med stationerne.  
+ 
+Den hedoniske model af Rosen ($1974$) er den metode der i litteraturen oftes benyttes til analyser af hvordan  karakteristikaer knyttet til en bolig bliver værdiansat. Den hedoniske model lider dog af problemer som hetroskedasticitet,  rumlig autokorrelation og multikollinaritet.  Den rumlig afhængighed i hedoniske modeller, knytter sig særligt til bolig i det samme område. Boligerne vil være tilbøjeliger til at være bygget på samme tid, hvilket ofte medfører ens strukturelle karakteristika, samtidig vil de miljømæssige omgivelser, samt adgangen til offentlig transport, supermarkeder osv. også være forholdsvis identisk, hvilket påvirker de rumlige- og områdekarakteristikaene. 
+
+Litteraturen beskriver flere metoder til at korrigere for den rumlige afhængighed,  men særligt grundet udvidet computerkraft og udvidet estimerings programmer, er den \textit{Additive Model}, ofte udvidet til den \textit{Generalized Additive Model } blevet oftere brugt i analyser af boligmarkedet. 
+
+Den \textit{Additive Model} bevarer mange af egenskaberne ved den linære model, men tillægges en større mængde af fleksibilitet, ved at der tillægges enkelte ikke parametriske led. Den øget fleksibilitet, skulle være med til at opfange yderligere af den rumlige variation. Samtidig medfører indførelsen af smoothing- og splinefunktioner, muligheden for at udspænde en rumligflade ved hjælp af længde og breddegrader. 
+
+Formålet med specialet er at analysere effekten på boligprisen af at bo i nærheden af en metrostation, her ses på hvordan effekten variere i forhold til afstanden mellem boligen og metrostationen. Analysen udføres først ved brug af den hedoninske prisfastsættelses metode, og efterfølgende tilføjes en ikke parametrisk del, til den hedoniske model, og denne estimeres i en additive model. 
+
+Overordnet bygger min hypotese på at de boliger der ligger lige op af en metrostation, vil opleve en mindre positiv effekt af en åbning af en station, dette skyldes bl.a. de negative eksternalitet som øget aktivitet omkring stationen og gener i forbindelse med banelegemet. Dette vil i stedet for den ofte antaget hypotese om en aftagende effekt som afstanden mellem metrostation og bolig øges, føre til en kurve hvor effekten først er stigende og derefter knækker og bliver aftagende derefter. 
+
+\subsection{Problemformulering}
+Specialet er baseret på følgende problemformulering: 
+%
+\begin{enumerate}
+   \item Hvordan varierer priseffekten, alt efter afstanden til metrostationen.
+  \item Kan en additive model, ved at inddrage en ikke-parametrisk del forbedre resultater fra den simple OLS regression. 
+\end{enumerate}
+%
+
+
+\subsection{Opgaveopbygning}
+Specielat er strukturet på følgende vis: Sektion et giver en kort beskrivelse af metrosystemet i København. Sektion to beskrivelse teorien bag den hedoniske prisfastsættelsesmetode, den additive model, samt en simpel model der beskriver sammenhængen mellem afstand til offentlig transport og boligprisen.  Sektion tre beskrivelser datsættet. Sektion fire beskriver sorteringen af datasættet samt beregnede variable brugt i analysen. Sektion $5-7$ går i nærmer detajler med tre typer af variable. Sektion otte  beskriver den praktiske metide for modellerne. Sektion ni præsentere estimationsresultater og sektion ti og elve samler specialet pointer i en diskussion samt en konklusion. 
